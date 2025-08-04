@@ -26,9 +26,50 @@ model User {
   postalCode    String?
   city          String?
   country       String?
+  role          UserRoles      @default(USER)
   orders        OrderProduct[]
   createdAt     DateTime       @default(now())
   updatedAt     DateTime       @updatedAt
+  Account       Account[]
+  Session       Session[]
+}
+
+model Account {
+  id                 String    @id @default(cuid())
+  userId             String
+  providerType       String
+  providerId         String
+  providerAccountId  String
+  refreshToken       String?
+  accessToken        String?
+  accessTokenExpires DateTime?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  user               User      @relation(fields: [userId], references: [id])
+
+  @@unique([providerId, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  userId       String
+  expires      DateTime
+  sessionToken String   @unique
+  accessToken  String   @unique
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  user         User     @relation(fields: [userId], references: [id])
+}
+
+model VerificationRequest {
+  id         String   @id @default(cuid())
+  identifier String
+  token      String   @unique
+  expires    DateTime
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@unique([identifier, token])
 }
 
 // Products
@@ -112,4 +153,9 @@ enum ExtraIngrediants {
   CHEESE
   TOMATO
   PEPPER
+}
+
+enum UserRoles {
+  USER
+  ADMIN
 }

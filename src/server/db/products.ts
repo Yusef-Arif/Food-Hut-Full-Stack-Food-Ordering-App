@@ -7,6 +7,7 @@ export const getProducts = cache(
       include: {
         sizes: true,
         extras: true,
+        Category: true,
       },
     });
 

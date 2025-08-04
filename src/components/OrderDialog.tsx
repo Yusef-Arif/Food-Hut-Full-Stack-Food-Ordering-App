@@ -32,10 +32,15 @@ export function OrderDialog({ product }: { product: productWithRelations }) {
   const [open, setOpen] = useState(false);
   const [quantity, setQuantity] = useState<number>(1);
 
+    useEffect(() => {
+    localStorage.setItem("cartItems", JSON.stringify(productsInCart));
+  }, [productsInCart]);
+
   useEffect(() => {
     if (defaultChoices) {
       setSize(defaultChoices.size);
       setExtra(defaultChoices.extra);
+      setQuantity(defaultChoices.quantity);
     }
   }, [defaultChoices]);
 
@@ -104,7 +109,7 @@ export function OrderDialog({ product }: { product: productWithRelations }) {
           <Plus
             size={40}
             onClick={() => setQuantity(quantity + 1)}
-            className="cursor-pointer bg-secondary text-white p-2 rounded-full"
+            className="cursor-pointer bg-secondary text-white p-2 rounded-xl"
           />
           <p className="text-2xl font-semibold select-none">
             Quantity: <span className="text-primary font-bold">{quantity}</span>{" "}
@@ -112,7 +117,7 @@ export function OrderDialog({ product }: { product: productWithRelations }) {
           <Minus
             size={40}
             onClick={() => quantity > 1 && setQuantity(quantity - 1)}
-            className="cursor-pointer bg-secondary text-white p-2 rounded-full"
+            className="cursor-pointer bg-secondary text-white p-2 rounded-xl"
           />
         </div>
         {error && <p className="text-red-500 text-sm mt-2">{error}</p>}

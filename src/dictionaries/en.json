@@ -1,0 +1,159 @@
+{
+  "navbar": {
+    "specialOffers": "Today special offers",
+    "whyUs": "Why FoodHut",
+    "menu": "Our Menu",
+    "login": "Login"
+  },
+  "hero": {
+    "heart": "People Trust us",
+    "title": "We're Serious For Food & Delivery",
+    "description": "Best cooks and best delivery guys all at your service. Hot tasty food will reach you in 60 minutes.",
+    "orderNow": "Order Now",
+    "learnMore": "Learn More"
+  },
+  "offers": {
+    "title": "Today special offers",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.",
+    "noOffers": "No special offers available at the moment.",
+    "checkBackLater": "Check back later for the latest offers."
+  },
+  "services": {
+    "title": ["We are", " more", " than", " multiple", " service"],
+    "description": "This is a type of restaurant which typically serves food and drink, in addition to light refreshments such as baked goods or snacks. The term comes from the french word meaning food",
+    "items": {
+      "onlineOrder": "Online Order",
+      "preReservation": "Pre-Reservation",
+      "organizedPlace": "Organized Foodhut Place",
+      "service24": "24/7 Service",
+      "superChef": "Super Chef",
+      "cleanKitchen": "Clean Kitchen"
+    }
+  },
+  "menu": {
+    "title": ["Menu", " that ", "always ", "make ", "you ", "fall", " in love"]
+  },
+  "appSection": {
+    "title": "It's Now More Easy to Order by Our Mobile App",
+    "description": "All you need to do is download one of the best delivery apps, make a and most companies are opting for mobile app development for food delivery"
+  },
+  "footer": {
+    "about": {
+      "title": "About Us",
+      "about": "About Us",
+      "service": "Service Us",
+      "contact": "Contact",
+      "company": "Company"
+    },
+    "company": {
+      "title": "Company",
+      "partnership": "Partnership",
+      "terms": "Terms of Use",
+      "privacy": "Privacy",
+      "sitemap": "Sitemap"
+    },
+    "getInTouch": {
+      "title": "Get in touch",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor",
+      "subscribe": "Subscribe",
+      "emailPlaceholder": "Email..."
+    }
+  },
+  "validation": {
+    "required": "This field is required",
+    "invalidEmail": "Please enter a valid email address",
+    "passwordMin": "Password must be at least 6 characters",
+    "passwordMax": "Password must not exceed 32 characters",
+    "passwordsNotMatch": "Passwords do not match",
+    "nameMin": "Name must be at least 2 characters",
+    "phone": "Invalid phone number. Please enter a valid Egyptian mobile number",
+    "postalCode": "Enter Valid postal code"
+  },
+  "errors": {
+    "emailExists": "This email is already registered",
+    "invalidCredentials": "Incorrect email or password",
+    "somethingWentWrong": "Something went wrong. Please try again.",
+    "unauthorized": "You must be logged in to access this page"
+  },
+  "messages": {
+    "loginSuccess": "Logged in successfully",
+    "registerSuccess": "Account created successfully",
+    "logoutSuccess": "Logged out successfully",
+    "updateSuccess": "Updated successfully",
+    "deleteSuccess": "Deleted successfully"
+  },
+  "labels": {
+    "name": "Name",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "rememberMe": "Remember Me",
+    "login": "Login",
+    "register": "Register",
+    "title": "Product Name",
+    "description": "Product Description",
+    "image": "Image URL",
+    "basePrice": "Base Price",
+    "category": "Category"
+  },
+  "placeholders": {
+    "name": "Enter your name",
+    "email": "Enter your email",
+    "password": "Enter password",
+    "confirmPassword": "Re-enter password",
+    "phone": "Enter phone number",
+    "streetAddress": "Enter street address",
+    "postalCode": "Enter postal code",
+    "city": "Enter city",
+    "country": "Enter country",
+    "title": "Enter product name",
+    "description": "Enter product description",
+    "image": "Enter image URL",
+    "basePrice": "Enter base price",
+    "category": "Select category"
+  },
+  "authPrompt": {
+    "haveAccount": "Already have an account?",
+    "noAccount": "Don't have an account?",
+    "login": "Login",
+    "register": "Register",
+    "goToLogin": "Login here",
+    "goToRegister": "Register here"
+  },
+  "profileMenu": {
+    "open": "Open",
+    "myAccount": "My Account",
+    "profile": "Profile",
+    "dashboard": "Dashboard",
+    "logout": "Log out",
+    "shortcuts": {
+      "profile": "⇧⌘P",
+      "logout": "⇧⌘Q"
+    }
+  },
+  "fields": {
+    "name": "Name",
+    "email": "Email",
+    "image": "Image",
+    "phone": "Phone Number",
+    "streetAddress": "Street Address",
+    "postalCode": "Postal Code",
+    "city": "City",
+    "country": "Country"
+  },
+  "dashboard": {
+    "nav": {
+      "users": "Users",
+      "allUsers": "All Users",
+      "createUser": "Create User",
+
+      "items": "Items",
+      "products": "Products",
+      "createProduct": "Create Product",
+
+      "categories": "Categories",
+      "allCategories": "Categories",
+      "createCategory": "Create Category"
+    }
+  }
+}
