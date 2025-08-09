@@ -19,7 +19,7 @@ const TextField = ({
   readOnly,
 }: Props) => {
   return (
-    <div className="space-y-2">
+    <div className="space-y-2 mb-5">
       <Label htmlFor={name}>{label}</Label>
       <Input
         name={name}

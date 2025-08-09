@@ -1,21 +1,38 @@
 import React from "react";
 import { TableCell } from "../ui/table";
-import { Button } from "../ui/button";
-import { Edit, Trash } from "lucide-react";
-import { ShowDialog } from "../show-dialog";
+import { ShowDialog } from "./show-dialog";
 import { productWithRelations } from "@/lib/types";
 import { User } from "@prisma/client";
+import { EditProduct, EditUser } from "./edit-dialog";
+import { Locale } from "@/i18n.config";
+import getTrans from "@/lib/translation";
+import DeleteAction from "./delete-action";
 
-const Actions = ({ show }: { show: productWithRelations | User }) => {
+const Actions = async ({
+  data,
+  locale,
+  slug,
+}: {
+  data: productWithRelations | User;
+  locale: Locale;
+  slug: string | undefined;
+}) => {
+  const isUserMode = slug === "user";
+  const translations = await getTrans(locale);
   return (
     <TableCell className="text-right space-x-2">
-      <ShowDialog data={show} />
-      <Button variant="ghost" size="icon" className="text-blue-500">
-        <Edit className="h-4 w-4" />
-      </Button>
-      <Button variant="ghost" size="icon" className="text-destructive">
-        <Trash className="h-4 w-4" />
-      </Button>
+      <ShowDialog data={data} />
+
+        {isUserMode ? (
+          <EditUser translations={translations} user={data as User} />
+        ) : (
+          <EditProduct
+            translations={translations}
+            product={data as productWithRelations}
+          />
+        )}
+
+      <DeleteAction id={data.id} translations={translations} slug={slug} />
     </TableCell>
   );
 };

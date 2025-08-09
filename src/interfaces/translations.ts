@@ -74,6 +74,13 @@ export interface Translations {
     invalidCredentials: string;
     somethingWentWrong: string;
     unauthorized: string;
+    name: string;
+    description: string;
+    price: string;
+    category: string;
+    image: string;
+    sizes: string;
+    extras: string;
   };
   messages: {
     loginSuccess: string;
@@ -81,6 +88,7 @@ export interface Translations {
     logoutSuccess: string;
     updateSuccess: string;
     deleteSuccess: string;
+    productCreated: string;
   };
   labels: {
     name: string;
@@ -93,8 +101,17 @@ export interface Translations {
     title: string;
     description: string;
     image: string;
+    changeImage: string;
     basePrice: string;
     category: string;
+    sizeName: string;
+    sizePrice: string;
+    extraName: string;
+    extraPrice: string;
+    addSize: string;
+    addExtra: string;
+    size: string;
+    extra: string;
   };
   placeholders: {
     name: string;
@@ -111,6 +128,10 @@ export interface Translations {
     image: string;
     basePrice: string;
     category: string;
+    sizeName: string;
+    sizePrice: string;
+    extraName: string;
+    extraPrice: string;
   };
   authPrompt: {
     haveAccount: string;

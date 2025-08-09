@@ -108,6 +108,17 @@ const useFormFields = ({ slug, translations }: props) => {
     },
   ];
 
+  const addUserFields = (): IFormField[] => [
+    ...editUserFields(),
+    {
+      label: translations.labels.password,
+      name: "password",
+      type: "password",
+      id: "password",
+      placeholder: translations.placeholders.password,
+    },
+  ];
+
   const addProductFields = (): IFormField[] => [
     {
       label: translations.labels.title,
@@ -125,25 +136,11 @@ const useFormFields = ({ slug, translations }: props) => {
       placeholder: translations.placeholders.description,
     },
     {
-      label: translations.labels.image,
-      name: "image",
-      type: "text",
-      id: "image",
-      placeholder: translations.placeholders.image,
-    },
-    {
       label: translations.labels.basePrice,
       name: "basePrice",
       type: "number",
       id: "basePrice",
       placeholder: translations.placeholders.basePrice,
-    },
-    {
-      label: translations.labels.category,
-      name: "categoryId",
-      type: "select",
-      id: "categoryId",
-      placeholder: translations.placeholders.category,
     },
   ];
 
@@ -157,6 +154,8 @@ const useFormFields = ({ slug, translations }: props) => {
         return editUserFields();
       case "addProduct":
         return addProductFields();
+      case "addUser":
+        return addUserFields();
 
       default:
         return [];

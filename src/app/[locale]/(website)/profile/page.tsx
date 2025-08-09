@@ -1,4 +1,5 @@
-import EditUser from "@/components/edit-user";
+
+import UserForm from "@/components/users/user-form";
 import { Locale } from "@/i18n.config";
 import getTrans from "@/lib/translation";
 import { authOptions } from "@/server/authOptions";
@@ -14,7 +15,7 @@ const page = async ({ params }: { params: Promise<{ locale: Locale }> }) => {
       <div className="container">
         <h1 className="text-5xl font-bold text-primary mb-7">Profile</h1>
         <div>
-          <EditUser translations={translations} user={session?.user} />
+          <UserForm translations={translations} user={session?.user} slug='profile' />
         </div>
       </div>
     </div>

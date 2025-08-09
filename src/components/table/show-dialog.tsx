@@ -87,18 +87,20 @@ export function ShowDialog({ data }: { data: productWithRelations | User }) {
             {isProduct ? data.description : data.email}
           </DialogDescription>
         </DialogHeader>
-        <div className="flex justify-start items-start gap-4">
-          {data.image ? (
-            <Image
-              src={data.image}
-              alt={isProduct ? data.title : data.name}
-              width={100}
-              height={100}
-              className="rounded-md object-cover"
-            />
-          ) : (
-            <UserIcon className="rounded-md object-cover w-[100px] h-[100px]" />
-          )}
+        <div className="flex flex-col justify-start items-start gap-4">
+          <div className="flex justify-center items-center w-full">
+            {data.image ? (
+              <Image
+                src={data.image}
+                alt={isProduct ? data.title : data.name}
+                width={100}
+                height={100}
+                className="rounded-md object-cover"
+              />
+            ) : (
+              <UserIcon className="rounded-md object-cover w-[100px] h-[100px]" />
+            )}
+          </div>
           <div>
             {Details.map((detail, index) => (
               <h1 key={index} className="text-lg">

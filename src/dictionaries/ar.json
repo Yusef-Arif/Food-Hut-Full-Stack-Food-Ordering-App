@@ -73,14 +73,22 @@
     "emailExists": "هذا البريد الإلكتروني مسجل بالفعل",
     "invalidCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة",
     "somethingWentWrong": "حدث خطأ ما. حاول مرة أخرى.",
-    "unauthorized": "يجب تسجيل الدخول للوصول إلى هذه الصفحة"
+    "unauthorized": "يجب تسجيل الدخول للوصول إلى هذه الصفحة",
+    "name": "اسم المنتج مطلوب.",
+    "description": "وصف المنتج مطلوب.",
+    "price": "السعر الأساسي مطلوب.",
+    "category": "يرجى اختيار قسم.",
+    "image": "صورة المنتج مطلوبة.",
+    "sizes": "يرجى إضافة مقاس واحد على الأقل.",
+    "extras": "يرجى إضافة إضافة واحدة على الأقل."
   },
   "messages": {
     "loginSuccess": "تم تسجيل الدخول بنجاح",
     "registerSuccess": "تم إنشاء الحساب بنجاح",
     "logoutSuccess": "تم تسجيل الخروج بنجاح",
     "updateSuccess": "تم التحديث بنجاح",
-    "deleteSuccess": "تم الحذف بنجاح"
+    "deleteSuccess": "تم الحذف بنجاح",
+    "productCreated": "تم إنشاء المنتج بنجاح."
   },
   "labels": {
     "name": "الاسم",
@@ -92,9 +100,18 @@
     "register": "إنشاء حساب",
     "title": "اسم المنتج",
     "description": "وصف المنتج",
-    "image": "رابط الصورة",
+    "image": "صورة المنتج",
+    "changeImage": "تغيير صورة المنتج",
     "basePrice": "السعر الأساسي",
-    "category": "الفئة"
+    "category": "الفئة",
+    "sizeName": "اسم الحجم",
+    "size": "الحجم",
+    "sizePrice": "السعر",
+    "extraName": "اسم الإضافة",
+    "extraPrice": "السعر",
+    "extra": "إضافة",
+    "addSize": "أضف حجم",
+    "addExtra": "أضف إضافة"
   },
   "placeholders": {
     "name": "أدخل اسمك",
@@ -110,7 +127,11 @@
     "description": "أدخل وصفًا للمنتج",
     "image": "أدخل رابط الصورة",
     "basePrice": "أدخل السعر الأساسي",
-    "category": "اختر الفئة"
+    "category": "اختر الفئة",
+    "sizeName": "اختر اسم الحجم",
+    "sizePrice": "أدخل سعر الحجم",
+    "extraName": "اختر اسم الإضافة",
+    "extraPrice": "أدخل سعر الإضافة"
   },
   "authPrompt": {
     "haveAccount": "هل لديك حساب بالفعل؟",

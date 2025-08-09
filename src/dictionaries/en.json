@@ -73,14 +73,22 @@
     "emailExists": "This email is already registered",
     "invalidCredentials": "Incorrect email or password",
     "somethingWentWrong": "Something went wrong. Please try again.",
-    "unauthorized": "You must be logged in to access this page"
+    "unauthorized": "You must be logged in to access this page",
+    "name": "Product name is required.",
+    "description": "Product description is required.",
+    "price": "Base price is required.",
+    "category": "Please select a category.",
+    "image": "Product image is required.",
+    "sizes": "Please add at least one size.",
+    "extras": "Please add at least one extra."
   },
   "messages": {
     "loginSuccess": "Logged in successfully",
     "registerSuccess": "Account created successfully",
     "logoutSuccess": "Logged out successfully",
     "updateSuccess": "Updated successfully",
-    "deleteSuccess": "Deleted successfully"
+    "deleteSuccess": "Deleted successfully",
+    "productCreated": "Product has been created successfully."
   },
   "labels": {
     "name": "Name",
@@ -92,9 +100,18 @@
     "register": "Register",
     "title": "Product Name",
     "description": "Product Description",
-    "image": "Image URL",
+    "image": "Product Image",
+    "changeImage": "Change Product Image",
     "basePrice": "Base Price",
-    "category": "Category"
+    "category": "Category",
+    "sizeName": "Size Name",
+    "size":"Size",
+    "sizePrice": "Price",
+    "extraName": "Extra Name",
+    "extra": "Extra",
+    "extraPrice": "Price",
+    "addSize": "Add Size",
+    "addExtra": "Add Extra"
   },
   "placeholders": {
     "name": "Enter your name",
@@ -110,7 +127,11 @@
     "description": "Enter product description",
     "image": "Enter image URL",
     "basePrice": "Enter base price",
-    "category": "Select category"
+    "category": "Select category",
+    "sizeName": "Select size name",
+    "sizePrice": "Enter size price",
+    "extraName": "Select extra name",
+    "extraPrice": "Enter extra price"
   },
   "authPrompt": {
     "haveAccount": "Already have an account?",

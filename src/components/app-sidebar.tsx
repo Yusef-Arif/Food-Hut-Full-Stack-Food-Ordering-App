@@ -55,7 +55,7 @@ export function AppSidebar({
           },
           {
             title: translations.dashboard.nav.createUser,
-            url: `/${locale}`,
+            url: `/${locale}/admin/users/add-user`,
           },
         ],
       },
@@ -81,7 +81,7 @@ export function AppSidebar({
         items: [
           {
             title: translations.dashboard.nav.allCategories,
-            url: `/${locale}`,
+            url: `/${locale}/admin/categories`,
           },
           {
             title: translations.dashboard.nav.createCategory,

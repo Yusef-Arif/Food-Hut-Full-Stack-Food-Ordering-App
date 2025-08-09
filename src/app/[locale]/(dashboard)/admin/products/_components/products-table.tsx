@@ -5,8 +5,15 @@ import { productWithRelations } from "@/lib/types";
 import MainTable from "@/components/table";
 import Actions from "@/components/table/actions";
 import { Badge } from "@/components/ui/badge";
+import { Locale } from "@/i18n.config";
 
-const ProductsTable = ({ products }: { products: productWithRelations[] }) => {
+const ProductsTable = ({
+  products,
+  locale,
+}: {
+  products: productWithRelations[];
+  locale: Locale;
+}) => {
   const cols = [
     "Order",
     "Image",
@@ -47,7 +54,7 @@ const ProductsTable = ({ products }: { products: productWithRelations[] }) => {
             <TableCell>
               {new Date(product.updatedAt).toLocaleString()}
             </TableCell>
-            <Actions show={product} />
+            <Actions data={product} locale={locale} slug={undefined} />
           </TableRow>
         ))}
       </MainTable>

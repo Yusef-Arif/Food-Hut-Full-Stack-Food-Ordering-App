@@ -190,7 +190,10 @@
   .gradiant-bg-bottom {
     background: linear-gradient(to bottom, white 0%, white 70%, #fdc55e1e 85%);
   }
-  .ltr{
+  .ltr {
     direction: ltr;
+  }
+  .heading {
+    @apply text-3xl font-bold text-primary flex gap-1.5 justify-start items-center;
   }
 }

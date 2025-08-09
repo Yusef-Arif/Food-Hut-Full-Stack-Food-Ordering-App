@@ -6,46 +6,58 @@ import { Translations } from "@/interfaces/translations";
 import FormFiald from "../FormFiald";
 import { Button } from "../ui/button";
 import { CameraIcon, Loader } from "lucide-react";
-import editUser, { InitialState } from "./_action/editUser";
 import { toast } from "sonner";
 import { Session } from "next-auth";
 import { UserRoles } from "@prisma/client";
 import { CheckBox } from "../CheckBox";
 import { useSession } from "next-auth/react";
+import {
+  InitialState,
+  createUser,
+  editCurrentUser,
+} from "@/server/_actions/users";
 
-const EditUser = ({
+const UserForm = ({
   translations,
   user,
+  slug,
 }: {
   translations: Translations;
-  user: Session["user"];
+  user: Session["user"] | undefined;
+  slug: string;
 }) => {
   const formData = new FormData();
   const session = useSession();
-  const [errors,setErrors] = useState({});
+  const [errors, setErrors] = useState({});
 
-  Object.entries(user).forEach(([key, value]) => {
-    if (value !== null && value !== undefined && key !== "image") {
-      formData.append(key, value.toString());
-    }
-  });
-  const [isAdmin, setIsAdmin] = useState(user.role === UserRoles.ADMIN);
-  const [selectedImage, setSelectedImage] = useState(user.image ?? "");
+  if (user) {
+    Object.entries(user).forEach(([key, value]) => {
+      if (value !== null && value !== undefined && key !== "image") {
+        formData.append(key, value.toString());
+      }
+    });
+  }
+
+  const [isAdmin, setIsAdmin] = useState(user?.role === UserRoles.ADMIN);
+  const [selectedImage, setSelectedImage] = useState(user?.image ?? "");
+
+  const fieldsSlug: string = slug === "create" ? "addUser" : "editUser";
+  const { getFields } = useFormFields({ slug: fieldsSlug, translations });
+
   const initialState: InitialState = {
     message: "",
     error: {},
     status: null,
     formData,
   };
-
-  const { getFields } = useFormFields({ slug: "editUser", translations });
   const [state, action, pending] = useActionState(
-    editUser.bind(null, isAdmin),
+    slug === "create" ? createUser : editCurrentUser.bind(null, isAdmin),
     initialState
   );
 
   useEffect(() => {
     if (state.status === 400 && state?.error) {
+      console.log(state.error);
       const formattedErrors: Record<string, string> = {};
       state?.error.forEach((err: { path: string[]; message: string }) => {
         const field = err.path.length === 0 ? "password" : err.path[0];
@@ -56,6 +68,7 @@ const EditUser = ({
     }
     if (state?.status === 200 && state.message && !pending) {
       toast.success(translations.messages.updateSuccess);
+      setErrors({});
     }
 
     if (state?.status !== 200 && state.message && !pending) {
@@ -64,18 +77,21 @@ const EditUser = ({
   }, [state, translations, pending]);
 
   useEffect(() => {
-    setSelectedImage(user.image as string);
-  }, [user.image]);
+    setSelectedImage(user?.image as string);
+  }, [user?.image]);
 
   console.log(state?.error);
 
   return (
-    <form action={action} className="flex gap-15">
+    <form
+      action={action}
+      className={`flex gap-15 ${slug !== "profile" ? "flex-col mb-7" : ""}`}
+    >
       <div className="group relative w-[200px] h-[200px] overflow-hidden rounded-full mx-auto ">
         {selectedImage && (
           <Image
             src={selectedImage}
-            alt={user.name}
+            alt={user?.name ?? "name"}
             width={200}
             height={200}
             className="rounded-full object-cover"
@@ -96,17 +112,16 @@ const EditUser = ({
         {getFields().map((field) => {
           const fieldValue =
             state?.formData?.get(field.name) ?? formData.get(field.name);
-          console.log(
-            state?.formData?.get(field.name),
-            formData.get(field.name)
-          );
           return (
             <div key={field.id} className="mb-5">
               <FormFiald
                 {...field}
-                defaultValue={fieldValue as string}
+                defaultValue={slug === "create" ? "" : (fieldValue as string)}
                 error={errors}
-                readOnly={field.type === "email"}
+                readOnly={
+                  (slug === "profile" || slug === "edit") &&
+                  field.type === "email"
+                }
               />
             </div>
           );
@@ -121,16 +136,21 @@ const EditUser = ({
           />
         )}
 
-        <Button type="submit" className="w-full mt-4">
+        <Button
+          type="submit"
+          className={`${
+            slug === "edit" ? "fixed bottom-5 left-9 w-[80%]" : "w-full mt-4"
+          } `}
+        >
           {pending && <Loader className="animate-spin" />}
-          {translations.authPrompt.login}
+          {translations.authPrompt.goToLogin}
         </Button>
       </div>
     </form>
   );
 };
 
-export default EditUser;
+export default UserForm;
 
 const UploadImage = ({
   setSelectedImage,
@@ -156,9 +176,9 @@ const UploadImage = ({
       />
       <label
         htmlFor="image-upload"
-        className="border rounded-full w-[200px] h-[200px] flex justify-center items-center cursor-pointer"
+        className="border border-primary rounded-full w-[200px] h-[200px] flex justify-center items-center cursor-pointer"
       >
-        <CameraIcon className="!w-8 !h-8 text-accent" />
+        <CameraIcon className="!w-8 !h-8 text-primary" />
       </label>
     </>
   );

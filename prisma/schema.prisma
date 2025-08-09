@@ -85,7 +85,7 @@ model Product {
   sizes       Size[]
   extras      Extra[]
   orders      OrderProduct[]
-  Category    Category       @relation(fields: [categoryId], references: [id])
+  Category    Category       @relation(fields: [categoryId], references: [id], onDelete: Cascade)
   categoryId  String
 }
 
@@ -93,7 +93,7 @@ model Size {
   id        String      @id @default(uuid())
   name      ProductSize
   price     Float
-  product   Product     @relation(fields: [productId], references: [id])
+  product   Product     @relation(fields: [productId], references: [id], onDelete: Cascade)
   productId String
 }
 
@@ -101,13 +101,13 @@ model Extra {
   id        String           @id @default(uuid())
   name      ExtraIngrediants
   price     Float
-  product   Product          @relation(fields: [productId], references: [id])
+  product   Product          @relation(fields: [productId], references: [id], onDelete: Cascade)
   productId String
 }
 
 model Category {
   id      String    @id @default(uuid())
-  name    String
+  name    String    @unique
   order   Int       @default(autoincrement())
   product Product[]
 }

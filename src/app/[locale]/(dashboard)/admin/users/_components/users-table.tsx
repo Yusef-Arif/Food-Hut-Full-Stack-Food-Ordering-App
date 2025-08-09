@@ -2,11 +2,12 @@ import MainTable from "@/components/table";
 import Actions from "@/components/table/actions";
 import { Badge } from "@/components/ui/badge";
 import { TableCell, TableRow } from "@/components/ui/table";
+import { Locale } from "@/i18n.config";
 import { User } from "@prisma/client";
 import { ShieldCheck, User as UserIcon } from "lucide-react";
 import Image from "next/image";
 
-const UsersTable = ({ users }: { users: User[] }) => {
+const UsersTable = ({ users, locale }: { users: User[]; locale: Locale }) => {
   const cols = [
     "ID",
     "Image",
@@ -57,7 +58,7 @@ const UsersTable = ({ users }: { users: User[] }) => {
               </TableCell>
               <TableCell>{new Date(user.createdAt).toLocaleString()}</TableCell>
               <TableCell>{new Date(user.updatedAt).toLocaleString()}</TableCell>
-              <Actions show={user} />
+              <Actions slug="user" data={user} locale={locale} />
             </TableRow>
           );
         })}
