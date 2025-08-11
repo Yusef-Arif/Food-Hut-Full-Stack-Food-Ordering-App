@@ -45,6 +45,9 @@ const Categories = ({
                 <AccordionContent>
                   {category.product.length > 0 ? (
                     <ProductsTable
+                      pagesCount={0}
+                      page={0}
+                      currentPage={0}
                       products={category.product}
                       locale={locale}
                     />

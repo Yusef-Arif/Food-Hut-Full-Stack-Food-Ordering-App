@@ -34,7 +34,7 @@ export interface Translations {
     title: string[];
   };
   appSection: {
-    title: string;
+    title: string[];
     description: string;
   };
   footer: {
@@ -89,6 +89,9 @@ export interface Translations {
     updateSuccess: string;
     deleteSuccess: string;
     productCreated: string;
+    noSizesAvailable: string;
+    noExtrasAvailable: string;
+    noProducts: string;
   };
   labels: {
     name: string;
@@ -112,6 +115,14 @@ export interface Translations {
     addExtra: string;
     size: string;
     extra: string;
+    orderNow: string;
+    learnMore: string;
+    addToCart: string;
+    quantity: string;
+    totalPrice: string;
+    chooseSize: string;
+    chooseExtra: string;
+    viewMore: string;
   };
   placeholders: {
     name: string;

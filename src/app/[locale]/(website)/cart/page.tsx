@@ -3,7 +3,7 @@ import CartItems from "../_components/CartItems";
 
 function page() {
   return (
-    <div className="py-25">
+    <div className="py-25 max-md:p-2 max-md:py-25">
       <div className="container">
         <h1 className="text-4xl font-black text-primary">Cart</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-5">
@@ -11,7 +11,7 @@ function page() {
             <CartItems />
           </div>
           <div>
-            <CartForm/>
+            <CartForm />
           </div>
         </div>
       </div>

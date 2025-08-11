@@ -22,13 +22,12 @@ export function AppSidebar({
   translations,
   ...props
 }: {
-  props: React.ComponentProps<typeof Sidebar>;
+  props: React.ComponentProps<typeof Sidebar> | null;
   session: Session;
   translations: Translations;
 }) {
   const CurrentUser = session.user;
   const { locale } = useParams();
-  console.log(locale);
 
   // This is sample data.
   const data = {
@@ -82,11 +81,7 @@ export function AppSidebar({
           {
             title: translations.dashboard.nav.allCategories,
             url: `/${locale}/admin/categories`,
-          },
-          {
-            title: translations.dashboard.nav.createCategory,
-            url: `/${locale}`,
-          },
+          }
         ],
       },
     ],

@@ -16,6 +16,7 @@ import {
   createUser,
   editCurrentUser,
 } from "@/server/_actions/users";
+import { useParams, useRouter } from "next/navigation";
 
 const UserForm = ({
   translations,
@@ -29,6 +30,8 @@ const UserForm = ({
   const formData = new FormData();
   const session = useSession();
   const [errors, setErrors] = useState({});
+  const router = useRouter();
+  const { locale } = useParams();
 
   if (user) {
     Object.entries(user).forEach(([key, value]) => {
@@ -57,7 +60,6 @@ const UserForm = ({
 
   useEffect(() => {
     if (state.status === 400 && state?.error) {
-      console.log(state.error);
       const formattedErrors: Record<string, string> = {};
       state?.error.forEach((err: { path: string[]; message: string }) => {
         const field = err.path.length === 0 ? "password" : err.path[0];
@@ -66,7 +68,17 @@ const UserForm = ({
       setErrors(formattedErrors);
       return;
     }
+    if (
+      state?.status === 200 &&
+      state.message &&
+      !pending &&
+      slug === "create"
+    ) {
+      router.push(`/${locale}/admin/users`);
+    }
+
     if (state?.status === 200 && state.message && !pending) {
+      router.push(`/${locale}/admin/users`);
       toast.success(translations.messages.updateSuccess);
       setErrors({});
     }
@@ -80,12 +92,12 @@ const UserForm = ({
     setSelectedImage(user?.image as string);
   }, [user?.image]);
 
-  console.log(state?.error);
-
   return (
     <form
       action={action}
-      className={`flex gap-15 ${slug !== "profile" ? "flex-col mb-7" : ""}`}
+      className={`flex gap-15 ${
+        slug !== "profile" ? "flex-col mb-7" : ""
+      } w-full`}
     >
       <div className="group relative w-[200px] h-[200px] overflow-hidden rounded-full mx-auto ">
         {selectedImage && (
@@ -108,7 +120,7 @@ const UserForm = ({
           <UploadImage setSelectedImage={setSelectedImage} />
         </div>
       </div>
-      <div className="w-[80%]">
+      <div className="w-full">
         {getFields().map((field) => {
           const fieldValue =
             state?.formData?.get(field.name) ?? formData.get(field.name);

@@ -21,6 +21,7 @@ import { toast } from "sonner";
 import { MoreDetails } from "./options-Field";
 import Image from "next/image";
 import { productWithRelations } from "@/lib/types";
+import { useParams, useRouter } from "next/navigation";
 export type InitialState = {
   status?: number | null;
   error?: ValidationError;
@@ -38,6 +39,8 @@ const ProductForm = ({
   product: productWithRelations | undefined;
 }) => {
   const isEditMode = Boolean(product);
+  const { locale } = useParams();
+  const router = useRouter();
   const { getFields } = useFormFields({ slug: "addProduct", translations });
   const [categoryId, setCategoryId] = useState<string>(
     isEditMode && product?.categoryId ? product.categoryId : ""
@@ -88,7 +91,6 @@ const ProductForm = ({
   );
 
   useEffect(() => {
-    console.log(state.error);
     if (state.message && state.status && !pending) {
       if (state.status === 400 && state?.error) {
         toast.error(translations.errors.somethingWentWrong);
@@ -108,6 +110,7 @@ const ProductForm = ({
         return;
       }
       if (state.status && state.status === 200) {
+        router.push(`/${locale}/admin/products`);
         setSelectedImage("");
         setCategoryId("");
         toast.success(translations.messages.productCreated);

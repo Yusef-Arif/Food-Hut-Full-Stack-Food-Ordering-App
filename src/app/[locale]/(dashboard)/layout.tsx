@@ -11,6 +11,8 @@ import DashboardHeader from "./admin/_components/dashboard-header";
 import getTrans from "@/lib/translation";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/server/authOptions";
+import { ThemeProvider } from "@/components/theme-provider";
+import { redirect } from "next/navigation";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,23 +39,38 @@ export default async function DashboardLayout({
   const locale = (await params).locale;
   const translations = await getTrans(locale);
   const session = await getServerSession(authOptions);
-  
+
+  if (!session) {
+    return redirect(`${locale}/login`);
+  }
+
   return (
-    <html lang={locale} dir={locale === "ar" ? "rtl" : "ltr"}>
+    <html
+      lang={locale}
+      dir={locale === "ar" ? "rtl" : "ltr"}
+      suppressHydrationWarning
+    >
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <UseSessionProvider>
           <ReduxProvider>
-            <SidebarProvider>
-              <AppSidebar session={session} translations={translations} />
-              <SidebarInset>
-                <DashboardHeader />
-                <main className="p-5">{children}</main>
-              </SidebarInset>
-            </SidebarProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="light"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <SidebarProvider>
+                <AppSidebar props={{}} session={session} translations={translations} />
+                <SidebarInset>
+                  <DashboardHeader />
+                  <main className="p-5">{children}</main>
+                </SidebarInset>
+              </SidebarProvider>
 
-            <Toaster />
+              <Toaster />
+            </ThemeProvider>
           </ReduxProvider>
         </UseSessionProvider>
       </body>

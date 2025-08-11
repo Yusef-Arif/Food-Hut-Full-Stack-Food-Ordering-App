@@ -13,7 +13,9 @@ const page = async ({ params }: { params: Promise<{ locale: Locale }> }) => {
         <Plus /> {translation.dashboard.nav.createUser}
       </h1>
 
-      <UserForm translations={translation} slug="create" user={undefined}/>
+      <div className="md:mx-10 lg:mx-20">
+        <UserForm translations={translation} slug="create" user={undefined} />
+      </div>
     </section>
   );
 };

@@ -57,7 +57,7 @@ function Form({
     <>
       <form action={action}>
         {getFields().map((field: IFormField) => (
-          <div key={field.id} className="mb-4 w-[350px]">
+          <div key={field.id} className="mb-4 lg:w-[350px]">
             <FormFiald {...field} error={error} />
           </div>
         ))}
@@ -67,7 +67,7 @@ function Form({
           {translations.authPrompt.register}
         </Button>
 
-        <p className="text-center mt-4 text-muted">
+        <p className="text-center mt-4 text-muted dark:text-muted-foreground">
           {translations.authPrompt.noAccount}{" "}
           <Link href={`/${locale}/auth/login`} className="text-primary">
             {translations.authPrompt.goToLogin}

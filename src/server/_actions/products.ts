@@ -241,3 +241,86 @@ export const deleteProduct = async (id: string) => {
     };
   }
 };
+/////////////////////////
+//get Filtered Products
+//////
+type Filter = {
+  page: number;
+  limit?: number;
+  minPrice?: number;
+  maxPrice?: number;
+  categoryId?: string;
+  search?: string;
+};
+export const getFilteredProducts = async (filter: Filter) => {
+  const page = filter.page;
+  const limit = filter.limit || 10;
+  const locale = await getCurrentLocale();
+  const translation = await getTrans(locale);
+  const skip = (page - 1) * limit;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const where: any = {};
+
+  if (filter.minPrice || filter.maxPrice) {
+    where.basePrice = {};
+    if (filter.minPrice) {
+      where.basePrice.gte = filter.minPrice;
+    }
+
+    if (filter.maxPrice) {
+      where.basePrice.lte = filter.maxPrice;
+    }
+  }
+
+  if (filter.categoryId) {
+    where.categoryId = filter.categoryId;
+  }
+
+  if (filter.search) {
+    where.OR = [
+      {
+        title: {
+          contains: filter.search.trim(),
+          mode: "insensitive",
+        },
+      },
+      {
+        description: {
+          contains: filter.search.trim(),
+          mode: "insensitive",
+        },
+      },
+    ];
+  }
+
+  try {
+    const [products, count] = await Promise.all([
+      db.product.findMany({
+        skip,
+        take: limit,
+        orderBy: { createdAt: "desc" },
+        where,
+        include: {
+          sizes: true,
+          extras: true,
+          Category: true,
+        },
+      }),
+      db.product.count({
+        where,
+      }),
+    ]);
+
+    return {
+      products,
+      pagesCount: Math.ceil(count / limit),
+      currentPage: page,
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      status: 500,
+      message: translation.errors.somethingWentWrong,
+    };
+  }
+};

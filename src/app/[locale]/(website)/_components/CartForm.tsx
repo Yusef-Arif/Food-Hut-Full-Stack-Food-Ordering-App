@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 
 function CartForm() {
   return (
-    <div className="border p-4 rounded-lg shadow-md bg-white/50">
+    <div className="border p-4 rounded-lg shadow-md bg-white/50 dark:bg-white/10">
       <h1 className="text-3xl font-semibold text-primary">Checkout</h1>
       <form action="">
         <CustomeInput text="phone" />

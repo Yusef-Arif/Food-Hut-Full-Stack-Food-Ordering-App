@@ -26,7 +26,7 @@ function CartItems() {
         productsInCart.map((product) => (
           <div
             key={product.id}
-            className="border p-4 rounded-lg shadow-md flex gap-3 relative"
+            className="border p-4 rounded-lg shadow-md flex gap-3 max-md:mb-7 relative"
           >
             <div>
               <Image
@@ -57,22 +57,24 @@ function CartItems() {
             >
               <Trash />
             </span>
-            <div className="absolute bottom-3 right-4 flex gap-2">
+            <div className="absolute bottom-3 right-4 flex gap-1 sm:gap-2">
               <Button
                 size="sm"
+                className="h-7 w-7 sm:h-8 sm:w-8"
                 onClick={() => dispatch(increaseQuantity(product.id))}
               >
-                <Plus />
+                <Plus className="h-4 w-4 sm:h-5 sm:w-5" />
               </Button>
-              <span className="bg-secondary text-white px-2 py-1 rounded-full flex items-center gap-1">
-                <X />
+              <span className="bg-secondary text-white px-1.5 sm:px-2 py-1 rounded-full flex items-center gap-0.5 sm:gap-1 text-sm sm:text-base">
+                <X className="h-4 w-4 sm:h-5 sm:w-5" />
                 {product.quantity}
               </span>
               <Button
                 size="sm"
+                className="h-7 w-7 sm:h-8 sm:w-8"
                 onClick={() => dispatch(decreaseQuantity(product.id))}
               >
-                <Minus />
+                <Minus className="h-4 w-4 sm:h-5 sm:w-5" />
               </Button>
             </div>
           </div>

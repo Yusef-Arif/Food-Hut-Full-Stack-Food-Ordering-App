@@ -43,6 +43,7 @@
   --radius-xl: calc(var(--radius) + 4px);
   --color-peach: var(--peach);
   --color-rose: var(--rose);
+  --color-gradiant-bg: var(--gradiant-bg);
 }
 
 :root {
@@ -80,6 +81,7 @@
   --sidebar-ring: oklch(0.704 0.04 256.788);
   --peach: #ffc26b;
   --rose: #ff8d8f83;
+  --gradiant-bg: #fdc55e1e;
 }
 
 .dark {
@@ -89,11 +91,11 @@
   --card-foreground: oklch(0.984 0.003 247.858);
   --popover: oklch(0.208 0.042 265.755);
   --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
+  --primary: #f54748;
   --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
+  --secondary: #fdc55e;
   --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: rgba(0, 0, 0, 0.308);
+  --muted: #ffffff / 8%;
   --muted-foreground: oklch(0.704 0.04 256.788);
   --accent: oklch(0.279 0.041 260.031);
   --accent-foreground: oklch(0.984 0.003 247.858);
@@ -114,11 +116,16 @@
   --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.551 0.027 264.364);
+  --peach: #ffc16b52;
+  --rose: #ff8d8f49;
+  --gradiant-bg: #fdc55e3d;
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    margin: 0;
+    padding: 0;
   }
   @font-face {
     font-family: "Sofia Pro";
@@ -159,10 +166,17 @@
     font-weight: 900;
     font-style: normal;
   }
+  html {
+    @apply scroll-smooth;
+    overflow-x: hidden;
+  }
   body {
     @apply bg-background text-foreground;
     font-family: "Sofia Pro", sans-serif;
     position: relative;
+    overflow: hidden;
+    padding-right: 0 !important;
+    margin-right: 0 !important;
   }
   .container {
     @apply mx-auto sm:px-2 md:px-4 lg:px-8 xl:px-16;
@@ -182,13 +196,18 @@
     background: linear-gradient(
       to bottom,
       var(--color-peach) 0%,
-      white 20%,
-      white 70%,
+      transparent 20%,
+      transparent 70%,
       var(--color-rose) 85%
     );
   }
   .gradiant-bg-bottom {
-    background: linear-gradient(to bottom, white 0%, white 70%, #fdc55e1e 85%);
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 70%,
+      var(--color-gradiant-bg) 85%
+    );
   }
   .ltr {
     direction: ltr;

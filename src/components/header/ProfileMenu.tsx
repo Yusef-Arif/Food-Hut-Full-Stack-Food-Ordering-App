@@ -32,8 +32,6 @@ export function ProfileMenu({
     toast.success(translation.messages.logoutSuccess);
   };
 
-  console.log(session?.user.image);
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

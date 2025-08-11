@@ -27,7 +27,6 @@ function Form({
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("first");
 
     if (!formRef.current) return;
 
@@ -54,7 +53,6 @@ function Form({
             formattedErrors[field] = err.message;
           });
           setError(formattedErrors);
-          console.log(error);
         }else{
           setError({});
         }
@@ -80,7 +78,7 @@ function Form({
     <>
       <form onSubmit={handleSubmit} ref={formRef}>
         {getFields().map((field: IFormField) => (
-          <div key={field.id} className="mb-4 w-[350px]">
+          <div key={field.id} className="mb-4 lg:w-[350px]">
             <FormFiald {...field} error={error} />
           </div>
         ))}
@@ -90,7 +88,7 @@ function Form({
           {translations.authPrompt.login}
         </Button>
 
-        <p className="text-center mt-4 text-muted">
+        <p className="text-center mt-4 text-muted dark:text-muted-foreground">
           {translations.authPrompt.noAccount}{" "}
           <Link href={`/${locale}/auth/signUp`} className="text-primary">
             {translations.authPrompt.goToRegister}

@@ -169,3 +169,57 @@ export const deleteUser = async (id: string) => {
     };
   }
 };
+/////////////////////
+//get Filtered Users
+////
+export const getFilteredUsers = async ({
+  page = 1,
+  limit = 10,
+  role,
+  search,
+}: {
+  page?: number;
+  limit?: number;
+  role?: string;
+  search?: string;
+}) => {
+  const locale = (await getCurrentLocale()) as Locale;
+  const translation = await getTrans(locale);
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const where: any = {};
+
+  if (role && role?.length > 0) {
+    where.role = role;
+  }
+
+  if (search && search?.length > 0) {
+    where.name = {
+      contains: search.trim(),
+      mode: "insensitive",
+    };
+  }
+
+  try {
+    const [users, totalCount] = await Promise.all([
+      db.user.findMany({
+        skip: (page - 1) * limit,
+        where,
+        take: limit,
+        orderBy: {
+          createdAt: "desc",
+        },
+      }),
+      db.user.count({ where }),
+    ]);
+
+    const pagesCount = Math.ceil(totalCount / limit);
+    return { users, pagesCount, currentPage: page };
+  } catch (error) {
+    console.error(error);
+    return {
+      status: 500,
+      message: translation.errors.somethingWentWrong,
+    };
+  }
+};

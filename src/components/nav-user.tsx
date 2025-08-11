@@ -33,10 +33,10 @@ export function NavUser({
   const { isMobile } = useSidebar();
   const { locale } = useParams();
 
-  const handelClick = ()=>{
+  const handelClick = () => {
     signOut();
     // toast.success(tra)
-  }
+  };
 
   return (
     <SidebarMenu>
@@ -80,13 +80,19 @@ export function NavUser({
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
-                <Link href={`/${locale}/profile`} className="flex justify-center items-center gap-1.5">
+                <Link
+                  href={`/${locale}/profile`}
+                  className="flex justify-center items-center gap-1.5"
+                >
                   <BadgeCheck />
                   Profile
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem>
-                <Link href={`/${locale}`} className="flex justify-center items-center gap-1.5">
+                <Link
+                  href={`/${locale}`}
+                  className="flex justify-center items-center gap-1.5"
+                >
                   <Home />
                   Home
                 </Link>

@@ -1,3 +1,4 @@
+import PagenationButtons from "@/components/pagenation-buttons";
 import MainTable from "@/components/table";
 import Actions from "@/components/table/actions";
 import { Badge } from "@/components/ui/badge";
@@ -7,7 +8,19 @@ import { User } from "@prisma/client";
 import { ShieldCheck, User as UserIcon } from "lucide-react";
 import Image from "next/image";
 
-const UsersTable = ({ users, locale }: { users: User[]; locale: Locale }) => {
+const UsersTable = ({
+  users,
+  locale,
+  page,
+  currentPage,
+  pagesCount,
+}: {
+  users: User[];
+  locale: Locale;
+  page: number;
+  currentPage: number;
+  pagesCount: number;
+}) => {
   const cols = [
     "ID",
     "Image",
@@ -63,6 +76,13 @@ const UsersTable = ({ users, locale }: { users: User[]; locale: Locale }) => {
           );
         })}
       </MainTable>
+      {pagesCount > 0 && (
+        <PagenationButtons
+          pagesCount={pagesCount ?? 0}
+          page={page}
+          currentPage={currentPage ?? 0}
+        />
+      )}
     </div>
   );
 };

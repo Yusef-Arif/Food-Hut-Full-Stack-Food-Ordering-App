@@ -16,8 +16,12 @@ const page = async ({ params }: { params: Promise<{ locale: Locale }> }) => {
         <Plus />
         {translations.dashboard.nav.createProduct}
       </h1>
-      <div className="ml-4 mt-6">
-        <ProductForm translations={translations} categorys={categorys} product={undefined} />
+      <div className="md:mx-10 lg:mx-20 mt-6">
+        <ProductForm
+          translations={translations}
+          categorys={categorys}
+          product={undefined}
+        />
       </div>
     </main>
   );

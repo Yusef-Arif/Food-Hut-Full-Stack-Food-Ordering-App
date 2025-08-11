@@ -34,7 +34,14 @@
     "title": ["Menu", " that ", "always ", "make ", "you ", "fall", " in love"]
   },
   "appSection": {
-    "title": "It's Now More Easy to Order by Our Mobile App",
+    "title": [
+      "It's Now",
+      " More Easy",
+      " to",
+      " Order",
+      " by Our Mobile",
+      " App"
+    ],
     "description": "All you need to do is download one of the best delivery apps, make a and most companies are opting for mobile app development for food delivery"
   },
   "footer": {
@@ -88,7 +95,10 @@
     "logoutSuccess": "Logged out successfully",
     "updateSuccess": "Updated successfully",
     "deleteSuccess": "Deleted successfully",
-    "productCreated": "Product has been created successfully."
+    "productCreated": "Product has been created successfully.",
+    "noSizesAvailable": "No sizes available for this product.",
+    "noExtrasAvailable": "No extras available for this product.",
+    "noProducts": "No products available at the moment."
   },
   "labels": {
     "name": "Name",
@@ -105,13 +115,21 @@
     "basePrice": "Base Price",
     "category": "Category",
     "sizeName": "Size Name",
-    "size":"Size",
+    "size": "Size",
     "sizePrice": "Price",
     "extraName": "Extra Name",
     "extra": "Extra",
     "extraPrice": "Price",
     "addSize": "Add Size",
-    "addExtra": "Add Extra"
+    "addExtra": "Add Extra",
+    "orderNow": "Order Now",
+    "learnMore": "Learn More",
+    "addToCart": "Add to Cart",
+    "quantity": "Quantity",
+    "totalPrice": "Total Price",
+    "chooseSize": "Choose the Size?",
+    "chooseExtra": "Choose the Extra?",
+    "viewMore": "View More"
   },
   "placeholders": {
     "name": "Enter your name",

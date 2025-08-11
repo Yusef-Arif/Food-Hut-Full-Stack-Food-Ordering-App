@@ -20,8 +20,15 @@ import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { addToCart, cartProducts } from "@/redux/CartSlice";
 import { Minus, Plus } from "lucide-react";
+import { Translations } from "@/interfaces/translations";
 
-export function OrderDialog({ product }: { product: productWithRelations }) {
+export function OrderDialog({
+  product,
+  translation,
+}: {
+  product: productWithRelations;
+  translation: Translations;
+}) {
   const productsInCart = useAppSelector(cartProducts);
   const [error, setError] = useState<string | null>(null);
   const dispatch = useAppDispatch();
@@ -32,7 +39,7 @@ export function OrderDialog({ product }: { product: productWithRelations }) {
   const [open, setOpen] = useState(false);
   const [quantity, setQuantity] = useState<number>(1);
 
-    useEffect(() => {
+  useEffect(() => {
     localStorage.setItem("cartItems", JSON.stringify(productsInCart));
   }, [productsInCart]);
 
@@ -80,7 +87,7 @@ export function OrderDialog({ product }: { product: productWithRelations }) {
           className="absolute bottom-[-15px] left-[50%] translate-x-[-50%]"
           size="lg"
         >
-          Order Now
+          {translation.labels.orderNow}
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
@@ -98,12 +105,28 @@ export function OrderDialog({ product }: { product: productWithRelations }) {
           <DialogDescription>{product.description}</DialogDescription>
         </DialogHeader>
         <div>
-          <h1 className="text-2xl font-semibold">Choose the Size?</h1>
-          <Sizes sizes={product.sizes} size={size} setSize={setSize} />
+          <h1 className="text-2xl font-semibold">
+            {translation.labels.chooseSize}
+          </h1>
+          {product.sizes.length === 0 ? (
+            <p className="text-muted mt-2">
+              {translation.messages.noSizesAvailable}
+            </p>
+          ) : (
+            <Sizes sizes={product.sizes} size={size} setSize={setSize} />
+          )}
         </div>
         <div>
-          <h1 className="text-2xl font-semibold">Any Extras?</h1>
-          <Extras extras={product.extras} extra={extra} setExtra={setExtra} />
+          <h1 className="text-2xl font-semibold">
+            {translation.labels.chooseExtra}
+          </h1>
+          {product.extras.length === 0 ? (
+            <p className="text-muted mt-2">
+              {translation.messages.noExtrasAvailable}
+            </p>
+          ) : (
+            <Extras extras={product.extras} extra={extra} setExtra={setExtra} />
+          )}
         </div>
         <div className="flex items-center justify-center gap-3">
           <Plus
@@ -112,7 +135,8 @@ export function OrderDialog({ product }: { product: productWithRelations }) {
             className="cursor-pointer bg-secondary text-white p-2 rounded-xl"
           />
           <p className="text-2xl font-semibold select-none">
-            Quantity: <span className="text-primary font-bold">{quantity}</span>{" "}
+            {translation.labels.quantity}:{" "}
+            <span className="text-primary font-bold">{quantity}</span>{" "}
           </p>
           <Minus
             size={40}
@@ -123,7 +147,7 @@ export function OrderDialog({ product }: { product: productWithRelations }) {
         {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
         <DialogFooter>
           <Button onClick={handelSubmit} size="lg" className="w-full">
-            Add to Cart
+            {translation.labels.addToCart}
           </Button>
         </DialogFooter>
       </DialogContent>
