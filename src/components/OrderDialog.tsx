@@ -22,6 +22,7 @@ import { addToCart, cartProducts } from "@/redux/CartSlice";
 import { Minus, Plus } from "lucide-react";
 import { Translations } from "@/interfaces/translations";
 import { toast } from "sonner";
+import { Extra, Size } from "@prisma/client";
 
 export function OrderDialog({
   product,
@@ -58,9 +59,10 @@ export function OrderDialog({
       return;
     }
 
-    const sizePrice = product.sizes.find((s) => s.name === size)?.price || 0;
+    const sizePrice =
+      product.sizes.find((s: Size) => s.name === size)?.price || 0;
     const extraPrice = extra.reduce((total, item) => {
-      const found = product.extras.find((e) => e.name === item);
+      const found = product.extras.find((e: Extra) => e.name === item);
       return total + (found?.price || 0);
     }, 0);
 
@@ -78,7 +80,7 @@ export function OrderDialog({
       })
     );
 
-    toast.success(translation.messages.addToCart)
+    toast.success(translation.messages.addToCart);
     setOpen(false);
   };
 
@@ -104,7 +106,9 @@ export function OrderDialog({
           <DialogTitle className="text-lg font-semibold text-primary">
             {product.title}
           </DialogTitle>
-          <DialogDescription className="text-center">{product.description}</DialogDescription>
+          <DialogDescription className="text-center">
+            {product.description}
+          </DialogDescription>
         </DialogHeader>
         <div>
           <h1 className="text-2xl font-semibold">

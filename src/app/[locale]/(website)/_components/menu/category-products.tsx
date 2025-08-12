@@ -2,7 +2,7 @@
 import ProductCard from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
 import { Translations } from "@/interfaces/translations";
-import { categoryWithProducts } from "@/lib/types";
+import { categoryWithProducts, productWithRelations } from "@/lib/types";
 import { ChevronRight, OctagonAlert } from "lucide-react";
 import React, { useState } from "react";
 import { CarouselDemo } from "../CarouselDemo";
@@ -49,11 +49,13 @@ const CategoryProducts = ({
       ) : (
         <div>
           <div className="max-md:hidden grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
-            {Category?.product.slice(0, 4).map((product: any) => (
-              <div key={product.id}>
-                <ProductCard product={product} translation={translation} />
-              </div>
-            ))}
+            {Category?.product
+              .slice(0, 4)
+              .map((product: productWithRelations) => (
+                <div key={product.id}>
+                  <ProductCard product={product} translation={translation} />
+                </div>
+              ))}
           </div>
 
           <div className="lg:hidden">
