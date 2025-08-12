@@ -141,6 +141,7 @@ export interface Translations {
     cancel: string;
     editProduct: string;
     editCategory: string;
+    profile: string;
   };
   alerts: {
     deleteCategory: {

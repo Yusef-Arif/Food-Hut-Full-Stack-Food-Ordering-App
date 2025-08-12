@@ -52,7 +52,8 @@ const page = async ({
         currentPage={currentPage ?? 0}
         pagesCount={pagesCount ?? 0}
         products={products as productWithRelations[]}
-        locale={locale}
+        translation={translations}
+        categories={categories}
       />
     </section>
   );

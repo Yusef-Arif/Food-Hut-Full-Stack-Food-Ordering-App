@@ -13,7 +13,7 @@ const page = async ({ params }: { params: Promise<{ locale: Locale }> }) => {
   return (
     <div className="py-23">
       <div className="container">
-        <h1 className="text-5xl font-bold text-primary mb-7">Profile</h1>
+        <h1 className="text-5xl font-bold text-primary mb-10">{translations.labels.profile}</h1>
         <div>
           <UserForm translations={translations} user={session?.user} slug='profile' />
         </div>

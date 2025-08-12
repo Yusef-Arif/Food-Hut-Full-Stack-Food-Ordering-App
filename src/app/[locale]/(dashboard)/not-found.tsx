@@ -24,7 +24,7 @@ export default function NotFound() {
 
           {/* Home Button */}
           <Link
-            href="/"
+            href="/en"
             className="inline-flex items-center gap-2 px-6 py-3 bg-primary text-white rounded-full
               hover:bg-primary/90 transition-all duration-200 shadow-lg hover:shadow-xl
               transform hover:-translate-y-0.5"

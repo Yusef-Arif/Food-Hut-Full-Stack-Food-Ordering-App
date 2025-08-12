@@ -1,36 +1,38 @@
+"use client";
 import React from "react";
 import { TableCell } from "../ui/table";
 import { ShowDialog } from "./show-dialog";
 import { productWithRelations } from "@/lib/types";
-import { User } from "@prisma/client";
+import { Category, User } from "@prisma/client";
 import { EditProduct, EditUser } from "./edit-dialog";
-import { Locale } from "@/i18n.config";
-import getTrans from "@/lib/translation";
+import { Translations } from "@/interfaces/translations";
 import DeleteAction from "./delete-action";
 
-const Actions = async ({
+const Actions = ({
   data,
-  locale,
+  translations,
   slug,
+  categories,
 }: {
   data: productWithRelations | User;
-  locale: Locale;
+  translations: Translations;
   slug: string | undefined;
+  categories?: Category[];
 }) => {
   const isUserMode = slug === "user";
-  const translations = await getTrans(locale);
   return (
     <TableCell className="text-right space-x-2">
-      <ShowDialog data={data} translations={translations}/>
+      <ShowDialog data={data} translations={translations} />
 
-        {isUserMode ? (
-          <EditUser translations={translations} user={data as User} />
-        ) : (
-          <EditProduct
-            translations={translations}
-            product={data as productWithRelations}
-          />
-        )}
+      {isUserMode ? (
+        <EditUser translations={translations} user={data as User} />
+      ) : (
+        <EditProduct
+          translations={translations}
+          product={data as productWithRelations}
+          categories={categories ?? []}
+        />
+      )}
 
       <DeleteAction id={data.id} translations={translations} slug={slug} />
     </TableCell>

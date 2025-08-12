@@ -40,7 +40,7 @@ const page = async ({
         currentPage={currentPage ?? 0}
         pagesCount={pagesCount ?? 0}
         users={users as User[]}
-        locale={locale}
+        translation={translation}
       />
     </div>
   );

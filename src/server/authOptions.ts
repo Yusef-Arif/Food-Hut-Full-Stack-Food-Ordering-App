@@ -93,6 +93,9 @@ export const authOptions: NextAuthOptions = {
         },
       },
       authorize: async (credentials, req) => {
+        if (!credentials) {
+          throw new Error("No credentials provided");
+        }
         const url = req?.headers?.referer;
         const locale = url?.split("/")[3] as Locale;
         const res = await LogIn(credentials, locale);
@@ -103,7 +106,9 @@ export const authOptions: NextAuthOptions = {
           throw new Error(
             JSON.stringify({
               validationError:
-                res.error?.length > 0 ? JSON.parse(res.error) : null,
+                res.error && Array.isArray(res.error) && res.error.length > 0
+                  ? JSON.parse(JSON.stringify(res.error))
+                  : null,
               responseError: res.message,
             })
           );

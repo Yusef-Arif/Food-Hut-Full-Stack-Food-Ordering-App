@@ -140,7 +140,8 @@
     "ok": "حسنا",
     "cancel": "إلغاء",
     "editProduct": "تعديل المنتج",
-    "editCategory": "تعديل الفئة"
+    "editCategory": "تعديل الفئة",
+    "profile": "الملف الشخصي"
   },
   "alerts": {
     "deleteCategory": {

@@ -1,3 +1,4 @@
+"use client";
 import ProductForm from "@/app/[locale]/(dashboard)/admin/products/_components/product-form";
 import {
   Dialog,
@@ -8,20 +9,20 @@ import {
 } from "@/components/ui/dialog";
 import { Translations } from "@/interfaces/translations";
 import { productWithRelations } from "@/lib/types";
-import { getCategorys } from "@/server/db/categorys";
 import { Category, User } from "@prisma/client";
 import { Edit, Pen } from "lucide-react";
 import UserForm from "../users/user-form";
 import { Button } from "../ui/button";
 
-export async function EditProduct({
+export function EditProduct({
   translations,
   product,
+  categories,
 }: {
   translations: Translations;
   product: productWithRelations;
+  categories: Category[];
 }) {
-  const categorys: Category[] = await getCategorys();
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -39,7 +40,7 @@ export async function EditProduct({
         <div className="max-h-[500px] overflow-y-auto p-5">
           <ProductForm
             translations={translations}
-            categorys={categorys}
+            categorys={categories}
             product={product}
           />
         </div>
@@ -48,7 +49,7 @@ export async function EditProduct({
   );
 }
 
-export async function EditUser({
+export function EditUser({
   translations,
   user,
 }: {

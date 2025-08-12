@@ -51,7 +51,8 @@ const Categories = async ({
                       page={0}
                       currentPage={0}
                       products={category.product}
-                      locale={locale}
+                      translation={translations}
+                      categories={[]}
                     />
                   ) : (
                     <p className="text-muted text-center my-3 text-lg font-serif">

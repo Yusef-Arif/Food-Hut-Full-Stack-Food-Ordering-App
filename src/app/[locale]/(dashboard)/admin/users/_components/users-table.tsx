@@ -3,23 +3,23 @@ import MainTable from "@/components/table";
 import Actions from "@/components/table/actions";
 import { Badge } from "@/components/ui/badge";
 import { TableCell, TableRow } from "@/components/ui/table";
-import { Locale } from "@/i18n.config";
+import { Translations } from "@/interfaces/translations";
 import { User } from "@prisma/client";
 import { ShieldCheck, User as UserIcon } from "lucide-react";
 import Image from "next/image";
 
 const UsersTable = ({
   users,
-  locale,
   page,
   currentPage,
   pagesCount,
+  translation,
 }: {
   users: User[];
-  locale: Locale;
   page: number;
   currentPage: number;
   pagesCount: number;
+  translation: Translations;
 }) => {
   const cols = [
     "ID",
@@ -71,7 +71,7 @@ const UsersTable = ({
               </TableCell>
               <TableCell>{new Date(user.createdAt).toLocaleString()}</TableCell>
               <TableCell>{new Date(user.updatedAt).toLocaleString()}</TableCell>
-              <Actions slug="user" data={user} locale={locale} />
+              <Actions slug="user" data={user} translations={translation} />
             </TableRow>
           );
         })}

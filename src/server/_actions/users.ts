@@ -5,16 +5,16 @@ import { getCurrentLocale } from "@/lib/getCurrentLocale ";
 import getImageURL from "@/lib/getImageURL";
 import { db } from "@/lib/prisma";
 import getTrans from "@/lib/translation";
-import { ValidationErrors } from "@/validations/auth";
+
 import { addUserSchema, editUserSchema } from "@/validations/user";
 import { UserRoles } from "@prisma/client";
 import { revalidatePath } from "next/cache";
 
 export interface InitialState {
   message?: string;
-  error?: ValidationErrors;
-  status?: number | null;
-  formData?: FormData | null;
+  error?: Array<{ path: string[]; message: string }> | string;
+  status: number;
+  formData?: FormData;
 }
 export const createUser = async (prevState: unknown, formData: FormData) => {
   const locale = (await getCurrentLocale()) as Locale;

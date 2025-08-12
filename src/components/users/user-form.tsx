@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { useActionState, useEffect, useState } from "react";
+import React, { useEffect, useState, useTransition } from "react";
 import useFormFields from "@/hooks/useFormFields";
 import { Translations } from "@/interfaces/translations";
 import FormFiald from "../FormFiald";
@@ -47,24 +47,31 @@ const UserForm = ({
   const fieldsSlug: string = slug === "create" ? "addUser" : "editUser";
   const { getFields } = useFormFields({ slug: fieldsSlug, translations });
 
-  const initialState: InitialState = {
-    message: "",
-    error: {},
-    status: null,
-    formData,
+  const [state, setState] = useState<InitialState>({ status: 0 });
+  const [pending, startTransition] = useTransition();
+
+  const handleSubmit = async (formData: FormData) => {
+    startTransition(async () => {
+      const result =
+        slug === "create"
+          ? await createUser(null, formData)
+          : await editCurrentUser(isAdmin, null, formData);
+      setState(result);
+    });
   };
-  const [state, action, pending] = useActionState(
-    slug === "create" ? createUser : editCurrentUser.bind(null, isAdmin),
-    initialState
-  );
 
   useEffect(() => {
     if (state.status === 400 && state?.error) {
       const formattedErrors: Record<string, string> = {};
-      state?.error.forEach((err: { path: string[]; message: string }) => {
-        const field = err.path.length === 0 ? "password" : err.path[0];
-        formattedErrors[field] = err.message;
-      });
+      if (Array.isArray(state.error)) {
+        state.error.forEach((err: { path: string[]; message: string }) => {
+          const field = err.path.length === 0 ? "password" : err.path[0];
+          formattedErrors[field] = err.message;
+        });
+      } else {
+        // Handle string error
+        formattedErrors.general = state.error;
+      }
       setErrors(formattedErrors);
       return;
     }
@@ -96,7 +103,11 @@ const UserForm = ({
 
   return (
     <form
-      action={action}
+      onSubmit={(e) => {
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+        handleSubmit(formData);
+      }}
       className={`flex gap-15 ${
         slug !== "profile" ? "flex-col mb-7" : ""
       } w-full`}
@@ -157,7 +168,7 @@ const UserForm = ({
           } `}
         >
           {pending && <Loader className="animate-spin" />}
-          {slug === "edit"
+          {slug === "edit" || slug === "profile"
             ? translations.labels.editUser
             : translations.authPrompt.goToLogin}
         </Button>

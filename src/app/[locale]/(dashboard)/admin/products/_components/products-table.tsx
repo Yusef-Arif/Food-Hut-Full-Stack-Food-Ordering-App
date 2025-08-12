@@ -5,18 +5,21 @@ import { productWithRelations } from "@/lib/types";
 import MainTable from "@/components/table";
 import Actions from "@/components/table/actions";
 import { Badge } from "@/components/ui/badge";
-import { Locale } from "@/i18n.config";
+import { Translations } from "@/interfaces/translations";
+import { Category } from "@prisma/client";
 import PagenationButtons from "@/components/pagenation-buttons";
 
 const ProductsTable = ({
   products,
-  locale,
+  translation,
+  categories,
   page,
   currentPage,
   pagesCount,
 }: {
   products: productWithRelations[];
-  locale: Locale;
+  translation: Translations;
+  categories: Category[];
   page: number;
   currentPage: number;
   pagesCount: number;
@@ -37,7 +40,7 @@ const ProductsTable = ({
       <MainTable cols={cols}>
         {products.length === 0 ? (
           <TableRow>
-              <p className="text-center my-5 w-full">there is no products</p>
+            <p className="text-center my-5 w-full">there is no products</p>
           </TableRow>
         ) : (
           products.map((product) => (
@@ -66,7 +69,12 @@ const ProductsTable = ({
               <TableCell>
                 {new Date(product.updatedAt).toLocaleString()}
               </TableCell>
-              <Actions data={product} locale={locale} slug={undefined} />
+              <Actions
+                data={product}
+                translations={translation}
+                slug={undefined}
+                categories={categories}
+              />
             </TableRow>
           ))
         )}
