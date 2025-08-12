@@ -15,7 +15,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Category, Extra, Size } from "@prisma/client";
+import {
+  Category,
+  Extra,
+  Size,
+  ProductSize,
+  ExtraIngrediants,
+} from "@prisma/client";
 import { ValidationError } from "next/dist/compiled/amphtml-validator";
 import { toast } from "sonner";
 import { MoreDetails } from "./options-Field";
@@ -47,7 +53,7 @@ const ProductForm = ({
   );
   const [sizes, setSizes] = useState<Partial<Size>[]>(
     isEditMode && product?.sizes
-      ? product.sizes.map((size) => ({
+      ? product.sizes.map((size: { name: ProductSize; price: number }) => ({
           name: size.name,
           price: size.price,
         }))
@@ -55,10 +61,12 @@ const ProductForm = ({
   );
   const [extras, setExtras] = useState<Partial<Extra>[]>(
     isEditMode && product?.extras
-      ? product.extras.map((extra) => ({
-          name: extra.name,
-          price: extra.price,
-        }))
+      ? product.extras.map(
+          (extra: { name: ExtraIngrediants; price: number }) => ({
+            name: extra.name,
+            price: extra.price,
+          })
+        )
       : []
   );
   const [selectedImage, setSelectedImage] = useState(
