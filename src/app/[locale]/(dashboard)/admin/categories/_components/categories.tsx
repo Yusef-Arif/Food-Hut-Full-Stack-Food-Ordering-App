@@ -8,14 +8,16 @@ import { categoryWithProducts } from "@/lib/types";
 import ProductsTable from "../../products/_components/products-table";
 import { Locale } from "@/i18n.config";
 import Actions from "./Actions";
+import getTrans from "@/lib/translation";
 
-const Categories = ({
+const Categories = async ({
   categories,
   locale,
 }: {
   categories: categoryWithProducts[];
   locale: Locale;
 }) => {
+  const translations = await getTrans(locale);
   return (
     <div>
       <Accordion
@@ -40,7 +42,7 @@ const Categories = ({
                       </span>
                     </AccordionTrigger>
                   </div>
-                  <Actions category={category} />
+                  <Actions category={category} translations={translations} />
                 </div>
                 <AccordionContent>
                   {category.product.length > 0 ? (
@@ -53,7 +55,7 @@ const Categories = ({
                     />
                   ) : (
                     <p className="text-muted text-center my-3 text-lg font-serif">
-                      There is no Products For this category yet
+                      {translations.messages.noProducts}
                     </p>
                   )}
                 </AccordionContent>

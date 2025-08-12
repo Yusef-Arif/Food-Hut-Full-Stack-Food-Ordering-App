@@ -1,16 +1,16 @@
 import { Label } from "./ui/label";
 import { Input } from "./ui/input";
 
-function CustomeInput({ text }: { text: string }) {
+function CustomeInput({ title, placeholder }: { title: string, placeholder: string }) {
   return (
     <div className="grid w-full items-center gap-3 my-4">
-      <Label htmlFor={text}>
-        {text.charAt(0).toUpperCase() + text.slice(1)}
+      <Label htmlFor={title}>
+        {title.charAt(0).toUpperCase() + title.slice(1)}
       </Label>
       <Input
-        type={text}
-        id={text}
-        placeholder={`Enter ${text.charAt(0).toUpperCase() + text.slice(1)}...`}
+        type={title}
+        id={title}
+        placeholder={placeholder}
       />
     </div>
   );

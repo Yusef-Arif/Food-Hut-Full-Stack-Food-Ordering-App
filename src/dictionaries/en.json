@@ -98,7 +98,14 @@
     "productCreated": "Product has been created successfully.",
     "noSizesAvailable": "No sizes available for this product.",
     "noExtrasAvailable": "No extras available for this product.",
-    "noProducts": "No products available at the moment."
+    "noProducts": "No products available at the moment.",
+    "addToCart": "Product has been added to the cart successfully.",
+    "removeFromCart": "Product has been removed from the cart successfully.",
+    "emptyCart": "Your cart is empty",
+    "createSuccess": "User has been created successfully",
+    "notProvided": "Not provided",
+    "notExtras": "No extras available",
+    "notSizes": "No sizes available"
   },
   "labels": {
     "name": "Name",
@@ -129,7 +136,24 @@
     "totalPrice": "Total Price",
     "chooseSize": "Choose the Size?",
     "chooseExtra": "Choose the Extra?",
-    "viewMore": "View More"
+    "viewMore": "View More",
+    "cart": "Cart",
+    "checkout": "Checkout",
+    "editUser": "Edit User",
+    "role": "Role",
+    "createdAt": "Created At",
+    "updatedAt": "Updated At",
+    "order": "Order",
+    "ok": "Ok",
+    "cancel": "Cancel",
+    "editProduct": "Edit Product",
+    "editCategory": "Edit Category"
+  },
+  "alerts": {
+    "deleteCategory": {
+      "title": "Confirm Deletion",
+      "description": "Are you sure you want to delete this category?"
+    }
   },
   "placeholders": {
     "name": "Enter your name",

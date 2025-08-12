@@ -33,7 +33,7 @@ export async function EditProduct({
         <DialogHeader>
           <DialogTitle className="text-primary font-bold flex gap-2 items-center text-2xl">
             <Pen />
-            Edit Product
+            {translations.labels.editProduct}
           </DialogTitle>
         </DialogHeader>
         <div className="max-h-[500px] overflow-y-auto p-5">
@@ -66,7 +66,7 @@ export async function EditUser({
         <DialogHeader>
           <DialogTitle className="text-primary font-bold flex gap-2 items-center text-2xl">
             <Pen />
-            {translations.dashboard.nav.createUser}
+            {translations.labels.editUser}
           </DialogTitle>
         </DialogHeader>
         <div className="max-h-[500px] overflow-y-auto p-5">

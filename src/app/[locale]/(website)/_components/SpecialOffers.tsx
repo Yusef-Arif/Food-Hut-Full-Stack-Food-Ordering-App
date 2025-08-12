@@ -32,7 +32,7 @@ const SpecialOffers = async ({
         </div>
 
         <div className="hidden lg:grid grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 md:gap-6 lg:gap-8 justify-items-center">
-          {(products.slice(0, 4)).map((offer) => (
+          {(products.slice(-4)).map((offer) => (
             <div key={offer.id}>
               <ProductCard product={offer} translation={translation} />
             </div>

@@ -81,7 +81,7 @@ export function AppSidebar({
           {
             title: translations.dashboard.nav.allCategories,
             url: `/${locale}/admin/categories`,
-          }
+          },
         ],
       },
     ],
@@ -89,7 +89,7 @@ export function AppSidebar({
 
   return (
     <Sidebar collapsible="icon" {...props}>
-      <SidebarHeader>
+      <SidebarHeader className="flex items-center">
         <TeamSwitcher team={data.teams} />
       </SidebarHeader>
       <SidebarContent className={`${locale === "ar" ? "ltr" : " "}`}>

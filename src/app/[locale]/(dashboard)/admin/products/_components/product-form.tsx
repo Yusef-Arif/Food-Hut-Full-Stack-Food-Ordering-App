@@ -109,14 +109,22 @@ const ProductForm = ({
         setErrors(formattedErrors);
         return;
       }
-      if (state.status && state.status === 200) {
+
+      if (state.status && state.status === 200 && isEditMode) {
         router.push(`/${locale}/admin/products`);
         setSelectedImage("");
         setCategoryId("");
-        toast.success(translations.messages.productCreated);
+        toast.success(translations.messages.updateSuccess);
       }
     }
-  }, [state, categoryId, pending, isEditMode, product]);
+
+    if (state.status && state.status === 200 && !isEditMode) {
+      router.push(`/${locale}/admin/products`);
+      setSelectedImage("");
+      setCategoryId("");
+      toast.success(translations.messages.createSuccess);
+    }
+  }, [state, pending]);
 
   return (
     <form action={action} className=" flex flex-col gap-4 my-4">
@@ -176,7 +184,9 @@ const ProductForm = ({
         } `}
       >
         <span>{pending && <Loader className="animate-spin" />}</span>{" "}
-        {translations.dashboard.nav.createProduct}
+        {isEditMode
+          ? translations.labels.editProduct
+          : translations.dashboard.nav.createProduct}
       </Button>
     </form>
   );

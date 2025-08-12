@@ -13,15 +13,17 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Edit, Loader, Plus } from "lucide-react";
 import { useActionState, useEffect } from "react";
-
 import { EditCategory, AddCategory } from "@/server/_actions/category";
 import { toast } from "sonner";
 import { categoryWithProducts } from "@/lib/types";
+import { Translations } from "@/interfaces/translations";
 
 export function CategoryForm({
   category,
+  translations
 }: {
   category: categoryWithProducts | undefined;
+  translations: Translations;
 }) {
   const isEditMode = category !== undefined;
   const initialState = {
@@ -53,7 +55,7 @@ export function CategoryForm({
           </Button>
         ) : (
           <Button variant="outline">
-            <Plus /> Add Category
+            <Plus /> {translations.dashboard.nav.createCategory}
           </Button>
         )}
       </DialogTrigger>
@@ -62,17 +64,17 @@ export function CategoryForm({
         <form action={action}>
           <DialogHeader>
             <DialogTitle className="heading">
-              <Plus /> New Category
+              <Plus /> {isEditMode ? translations.labels.editCategory : translations.dashboard.nav.createCategory}
             </DialogTitle>
           </DialogHeader>
           <div className=" my-4">
             <Label htmlFor="name-1" className="mb-2">
-              Category Name
+              {translations.labels.category}
             </Label>
             <Input
               id="name-1"
               name="name"
-              placeholder="add category name..."
+              placeholder={translations.placeholders.category}
               defaultValue={category && category.name}
             />
 
@@ -84,10 +86,10 @@ export function CategoryForm({
           </div>
           <DialogFooter>
             <DialogClose asChild>
-              <Button variant="outline">Cancel</Button>
+              <Button variant="outline">{translations.labels.cancel}</Button>
             </DialogClose>
             <Button type="submit">
-              {pending && <Loader className="animate-spin" />} Add
+              {pending && <Loader className="animate-spin" />} {translations.labels.ok}
             </Button>
           </DialogFooter>
         </form>

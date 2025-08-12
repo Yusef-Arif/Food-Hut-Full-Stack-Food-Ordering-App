@@ -91,7 +91,14 @@
     "productCreated": "تم إنشاء المنتج بنجاح.",
     "noSizesAvailable": "لا توجد مقاسات متاحة لهذا المنتج.",
     "noExtrasAvailable": "لا توجد إضافات متاحة لهذا المنتج.",
-    "noProducts": "لا توجد منتجات متاحة في الوقت الحالي."
+    "noProducts": "لا توجد منتجات متاحة في الوقت الحالي.",
+    "addToCart": "تمت إضافة المنتج إلى السلة بنجاح.",
+    "removeFromCart": "تمت إزالة المنتج من السلة بنجاح.",
+    "emptyCart": "سلتك فارغة",
+    "createSuccess": "تم إنشاء المستخدم بنجاح",
+    "notProvided": "لم يتم توفير",
+    "notExtras": "لا توجد إضافات",
+    "notSizes": "لا توجد مقاسات"
   },
   "labels": {
     "name": "الاسم",
@@ -122,7 +129,24 @@
     "totalPrice": "السعر الإجمالي",
     "chooseSize": "اختر الحجم؟",
     "chooseExtra": "اختر الإضافة؟",
-    "viewMore": "عرض المزيد"
+    "viewMore": "عرض المزيد",
+    "cart": "السلة",
+    "checkout": "الدفع",
+    "editUser": "تعديل المستخدم",
+    "role": "الدور",
+    "createdAt": "تاريخ الإنشاء",
+    "updatedAt": "تاريخ التحديث",
+    "order": "الطلب",
+    "ok": "حسنا",
+    "cancel": "إلغاء",
+    "editProduct": "تعديل المنتج",
+    "editCategory": "تعديل الفئة"
+  },
+  "alerts": {
+    "deleteCategory": {
+      "title": "تأكيد الحذف",
+      "description": "هل أنت متأكد أنك تريد حذف هذه الفئة؟"
+    }
   },
   "placeholders": {
     "name": "أدخل اسمك",

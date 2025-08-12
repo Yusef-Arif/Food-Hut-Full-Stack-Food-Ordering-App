@@ -23,7 +23,7 @@ const Products = ({
         <>
           <div className=" lg:grid grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 md:gap-6 lg:gap-8 justify-items-center">
             {products?.map((offer) => (
-              <div key={offer.id}>
+              <div key={offer.id} className="max-md:!mb-10">
                 <ProductCard product={offer} translation={translation} />
               </div>
             ))}

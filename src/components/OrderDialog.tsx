@@ -21,6 +21,7 @@ import { useAppDispatch, useAppSelector } from "@/hooks/redux";
 import { addToCart, cartProducts } from "@/redux/CartSlice";
 import { Minus, Plus } from "lucide-react";
 import { Translations } from "@/interfaces/translations";
+import { toast } from "sonner";
 
 export function OrderDialog({
   product,
@@ -77,6 +78,7 @@ export function OrderDialog({
       })
     );
 
+    toast.success(translation.messages.addToCart)
     setOpen(false);
   };
 
@@ -97,12 +99,12 @@ export function OrderDialog({
             alt="order image"
             width={200}
             height={200}
-            className="object-contain size-40 rounded-full"
+            className="object-cover size-40 rounded-full"
           />
           <DialogTitle className="text-lg font-semibold text-primary">
             {product.title}
           </DialogTitle>
-          <DialogDescription>{product.description}</DialogDescription>
+          <DialogDescription className="text-center">{product.description}</DialogDescription>
         </DialogHeader>
         <div>
           <h1 className="text-2xl font-semibold">
@@ -166,7 +168,7 @@ function Sizes({
 }) {
   return (
     <RadioGroup defaultValue={size ? size : "comfortable"} value={size}>
-      <div className="grid grid-cols-3 gap-4 my-3">
+      <div className="grid grid-cols-1 gap-4 my-3">
         {sizes.map((s) => (
           <div key={s.id} className="flex items-center gap-3">
             <RadioGroupItem
@@ -195,7 +197,7 @@ function Extras({
   setExtra: (extra: string[]) => void;
 }) {
   return (
-    <div className="grid grid-cols-3 gap-4 my-3">
+    <div className="grid grid-cols-2 gap-4 my-3">
       {extras.map((e) => (
         <div key={e.id} className="flex items-center gap-3">
           <Checkbox

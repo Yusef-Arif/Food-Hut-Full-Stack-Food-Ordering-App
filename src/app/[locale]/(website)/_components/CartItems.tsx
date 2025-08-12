@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { useAppDispatch, useAppSelector } from "@/hooks/redux";
+import { Translations } from "@/interfaces/translations";
 import { currencyFormatter } from "@/lib/formatter";
 import {
   cartProducts,
@@ -9,11 +10,14 @@ import {
   deleteItem,
   increaseQuantity,
 } from "@/redux/CartSlice";
-import { Minus, Plus, Trash, X } from "lucide-react";
+import { Minus, Plus, ShoppingBasket, Trash, X } from "lucide-react";
 import Image from "next/image";
+import { useParams } from "next/navigation";
 import { useEffect } from "react";
+import { toast } from "sonner";
 
-function CartItems() {
+function CartItems({ translation }: { translation: Translations }) {
+  const { locale } = useParams();
   const productsInCart = useAppSelector(cartProducts);
   const dispatch = useAppDispatch();
 
@@ -41,9 +45,11 @@ function CartItems() {
               <h2 className="text-3xl font-bold text-primary">
                 {product.title}
               </h2>
-              <p>Size: {product.size}</p>
               <p>
-                Extras:{" "}
+                {translation.labels.size}: {product.size}
+              </p>
+              <p>
+                {translation.labels.extra}:{" "}
                 {product.extra.length > 0
                   ? product.extra.join(", ")
                   : "No Extras"}
@@ -52,12 +58,21 @@ function CartItems() {
               <p>{currencyFormatter(product.totalPrice)}</p>
             </div>
             <span
-              onClick={() => dispatch(deleteItem(product.id))}
-              className="absolute top-3 right-2 cursor-pointer text-red-500 hover:text-red-700 transition-all duration-300"
+              onClick={() => {
+                dispatch(deleteItem(product.id));
+                toast.success(translation.messages.removeFromCart);
+              }}
+              className={`absolute top-3 ${
+                locale === "ar" ? "left-2" : "right-2"
+              } cursor-pointer text-red-500 hover:text-red-700 transition-all duration-300`}
             >
               <Trash />
             </span>
-            <div className="absolute bottom-3 right-4 flex gap-1 sm:gap-2">
+            <div
+              className={`absolute bottom-3 ${
+                locale === "ar" ? "left-4" : "right-4"
+              } flex gap-1 sm:gap-2`}
+            >
               <Button
                 size="sm"
                 className="h-7 w-7 sm:h-8 sm:w-8"
@@ -80,7 +95,12 @@ function CartItems() {
           </div>
         ))
       ) : (
-        <p className="text-muted text-5xl text-center">Your cart is empty</p>
+        <div className="flex  items-center justify-center h-full py-10">
+          <p className="text-muted text-3xl text-center">
+            <ShoppingBasket className="inline-block mx-2" size={40} />
+            {translation.messages.emptyCart}
+          </p>
+        </div>
       )}
     </>
   );

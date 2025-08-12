@@ -75,9 +75,11 @@ const UserForm = ({
       slug === "create"
     ) {
       router.push(`/${locale}/admin/users`);
+      toast.success(translations.messages.createSuccess);
+      setErrors({});
     }
 
-    if (state?.status === 200 && state.message && !pending) {
+    if (state?.status === 200 && state.message && !pending && slug === "edit") {
       router.push(`/${locale}/admin/users`);
       toast.success(translations.messages.updateSuccess);
       setErrors({});
@@ -155,7 +157,9 @@ const UserForm = ({
           } `}
         >
           {pending && <Loader className="animate-spin" />}
-          {translations.authPrompt.goToLogin}
+          {slug === "edit"
+            ? translations.labels.editUser
+            : translations.authPrompt.goToLogin}
         </Button>
       </div>
     </form>

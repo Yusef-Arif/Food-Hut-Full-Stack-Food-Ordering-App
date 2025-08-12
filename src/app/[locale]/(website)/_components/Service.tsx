@@ -7,10 +7,11 @@ import React from "react";
 import servce1 from "@/../public/assets/icons/service1.png";
 import servce3 from "@/../public/assets/icons/service3.png";
 import servce4 from "@/../public/assets/icons/service4.png";
+import Link from "@/components/Link";
 
 const Service = async () => {
   const locale = await getCurrentLocale();
-  const { services } = await getTrans(locale);
+  const { services, labels } = await getTrans(locale);
   const servicesText = [
     { service: services.items.onlineOrder, src: servce1 },
     {
@@ -89,13 +90,14 @@ const Service = async () => {
               ))}
             </ul>
 
-            {/* CTA Button */}
-            <Button
-              size="lg"
-              className="w-full sm:w-auto text-base sm:text-lg px-6 sm:px-8 py-2.5 sm:py-3"
-            >
-              Order Now
-            </Button>
+            <Link href={`/${locale}/menu`}>
+              <Button
+                size="lg"
+                className="w-full sm:w-auto text-base sm:text-lg px-6 sm:px-8 py-2.5 sm:py-3"
+              >
+                {labels.orderNow}
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

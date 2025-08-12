@@ -18,7 +18,7 @@ const page = async ({ params }: { params: Promise<{ locale: Locale }> }) => {
           <Blocks /> {translations.dashboard.nav.allCategories}
         </h1>
         <div>
-          <CategoryForm category={undefined} />
+          <CategoryForm category={undefined} translations={translations} />
         </div>
       </div>
       <Categories categories={categories} locale={locale} />

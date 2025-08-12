@@ -7,6 +7,7 @@ import decore from "@/../public/assets/icons/decore.png";
 import heroImage from "@/../public/assets/images/hero.png";
 import heartIcon from "@/../public/assets/icons/heart.png";
 import arrowIcon from "@/../public/assets/icons/arrow1.png";
+import Link from "@/components/Link";
 
 const Hero = async () => {
   const locale = await getCurrentLocale();
@@ -24,7 +25,7 @@ const Hero = async () => {
               height={30}
               priority
               loading="eager"
-              className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 object-contain"
+              className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 object-contain animate-pulse"
             />
             <span className="text-xs sm:text-sm md:text-base">
               {hero.heart}
@@ -63,7 +64,7 @@ const Hero = async () => {
                 height={500}
                 priority
                 loading="eager"
-                className="absolute bottom-[-20px] sm:bottom-[-30px] lg:bottom-[-40px] left-0 w-full h-[6px] sm:h-[8px] lg:h-[10px] object-contain"
+                className="absolute bottom-[-10px] sm:bottom-[-20px] lg:bottom-[-10px] left-0 w-full h-[6px] sm:h-[8px] lg:h-[10px] object-contain"
               />
             </span>
             .
@@ -76,16 +77,23 @@ const Hero = async () => {
 
           {/* Buttons */}
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-            <Button size="lg" className="w-full sm:w-auto text-sm sm:text-base">
-              {hero.orderNow}
-            </Button>
-            <Button
-              variant="ghost"
-              size="lg"
-              className="w-full sm:w-auto text-sm sm:text-base"
-            >
-              {hero.learnMore}
-            </Button>
+            <Link href={`/${locale}/menu`}>
+              <Button
+                size="lg"
+                className="w-full sm:w-auto text-sm sm:text-base"
+              >
+                {hero.orderNow}
+              </Button>
+            </Link>
+            <Link href={`/${locale}/why-us`}>
+              <Button
+                variant="ghost"
+                size="lg"
+                className="w-full sm:w-auto text-sm sm:text-base"
+              >
+                {hero.learnMore}
+              </Button>
+            </Link>
           </div>
         </div>
 

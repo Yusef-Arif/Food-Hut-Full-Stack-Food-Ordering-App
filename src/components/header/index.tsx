@@ -37,7 +37,7 @@ const Header = async () => {
             </div>
 
             <Link
-              href={"/cart"}
+              href={`${locale}/cart`}
               className="relative flex items-center justify-center"
             >
               <ShoppingCart
@@ -58,7 +58,7 @@ const Header = async () => {
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center gap-3">
             <Link
-              href={"/cart"}
+              href={`${locale}/cart`}
               className="relative flex items-center justify-center"
             >
               <ShoppingCart

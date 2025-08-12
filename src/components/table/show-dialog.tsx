@@ -9,6 +9,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { Translations } from "@/interfaces/translations";
 import { currencyFormatter } from "@/lib/formatter";
 import { productWithRelations } from "@/lib/types";
 import { User } from "@prisma/client";
@@ -16,59 +17,83 @@ import { Eye, UserIcon } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
-export function ShowDialog({ data }: { data: productWithRelations | User }) {
+export function ShowDialog({
+  data,
+  translations,
+}: {
+  data: productWithRelations | User;
+  translations: Translations;
+}) {
   const [close, setClose] = useState(false);
   const isProduct = "title" in data;
   const Details = isProduct
     ? [
         {
-          basePrice: currencyFormatter(data.basePrice),
+          title: translations.labels.basePrice,
+          value: currencyFormatter(data.basePrice),
         },
 
         {
-          category: data.Category.name,
+          title: translations.labels.category,
+          value: data.Category.name,
         },
         {
-          order: data.order,
+          title: translations.labels.order,
+          value: data.order,
         },
         {
-          extras:
+          title: translations.labels.extra,
+          value:
             data.extras.map((extra) => extra.name).join(", ") ||
-            "there are no extras",
+            translations.messages.notExtras,
         },
         {
-          sizes:
+          title: translations.labels.size,
+          value:
             data.sizes.map((size) => size.name).join(", ") ||
-            "there are no sizes",
+            translations.messages.notSizes,
         },
         {
-          createdAt: new Date(data.createdAt).toLocaleString(),
+          title: translations.labels.createdAt,
+          value: new Date(data.createdAt).toLocaleString(),
         },
         {
-          updatedAt: new Date(data.updatedAt).toLocaleString(),
+          title: translations.labels.updatedAt,
+          value: new Date(data.updatedAt).toLocaleString(),
         },
       ]
     : [
         {
-          role: data.role,
+          title: translations.labels.role,
+          value: data.role,
         },
         {
-          phone: data.phone || "No phone provided",
+          title: translations.fields.phone,
+          value: data.phone || translations.messages.notProvided,
         },
         {
-          city: data.city || "No city provided",
+          title: translations.fields.city,
+          value: data.city || translations.messages.notProvided,
         },
         {
-          country: data.country || "No country provided",
+          title: translations.fields.country,
+          value: data.country || translations.messages.notProvided,
         },
         {
-          postalCode: data.postalCode || "No postal code provided",
+          title: translations.fields.postalCode,
+          value: data.postalCode || translations.messages.notProvided,
         },
         {
-          createdAt: new Date(data.createdAt).toLocaleString(),
+          title: translations.labels.email,
+          value: data.email || translations.messages.notProvided,
         },
         {
-          updatedAt: new Date(data.updatedAt).toLocaleString(),
+          title: translations.labels.createdAt,
+          value: new Date(data.createdAt).toLocaleString(),
+        },
+        {
+          title: translations.labels.updatedAt,
+          value: new Date(data.updatedAt).toLocaleString(),
         },
       ];
   return (
@@ -104,10 +129,8 @@ export function ShowDialog({ data }: { data: productWithRelations | User }) {
           <div>
             {Details.map((detail, index) => (
               <h1 key={index} className="text-lg">
-                <span className="text-primary font-bold">
-                  {Object.keys(detail)[0]}:
-                </span>{" "}
-                {Object.values(detail)[0]}
+                <span className="text-primary font-bold">{detail.title}:</span>{" "}
+                {detail.value}
               </h1>
             ))}
           </div>
@@ -118,7 +141,7 @@ export function ShowDialog({ data }: { data: productWithRelations | User }) {
             className="w-full"
             onClick={() => setClose(false)}
           >
-            Ok
+            {translations.labels.ok}
           </Button>
         </DialogFooter>
       </DialogContent>

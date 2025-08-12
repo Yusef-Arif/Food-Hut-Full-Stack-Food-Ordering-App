@@ -21,7 +21,7 @@ const Actions = async ({
   const translations = await getTrans(locale);
   return (
     <TableCell className="text-right space-x-2">
-      <ShowDialog data={data} />
+      <ShowDialog data={data} translations={translations}/>
 
         {isUserMode ? (
           <EditUser translations={translations} user={data as User} />

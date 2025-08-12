@@ -5,6 +5,8 @@ import { getFilteredProducts } from "@/server/_actions/products";
 import { Locale } from "@/i18n.config";
 import getTrans from "@/lib/translation";
 import Search from "@/components/Search";
+import { FilterProducts } from "../../(dashboard)/admin/products/_components/filter-products";
+import { getCategorys } from "@/server/db/categorys";
 
 const page = async ({
   searchParams,
@@ -30,15 +32,23 @@ const page = async ({
     categoryId: (await searchParams).categoryId,
     search: (await searchParams).search,
   });
+  const categories = await getCategorys();
   return (
     <section className="min-h-[100vh] py-20">
       <div className="container">
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-center max-md:flex-col">
           <h1 className="text-4xl font-bold text-primary">Menu</h1>
-          <Search />
+          <div className="flex justify-between md:justify-end my-5 w-full items-center px-2 gap-2">
+            <div className="md:hidden">
+              <FilterProducts categories={categories} />
+            </div>
+            <Search />
+          </div>
         </div>
         <div className="flex gap-5 my-6">
-          <Filter />
+          <div className="max-md:hidden">
+            <Filter />
+          </div>
 
           <Products
             page={Number((await searchParams).page) || 1}

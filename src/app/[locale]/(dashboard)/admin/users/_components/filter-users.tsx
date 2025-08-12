@@ -12,7 +12,6 @@ import { UserRoles } from "@prisma/client";
 import { Filter } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 
-
 const FilterUsers = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -24,7 +23,7 @@ const FilterUsers = () => {
   };
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>
+      <DropdownMenuTrigger asChild>
         <Button variant="outline">
           <Filter /> Filter
         </Button>

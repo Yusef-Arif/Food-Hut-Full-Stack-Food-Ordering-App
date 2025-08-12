@@ -27,24 +27,28 @@ const DashboardHeader = () => {
         />
         <Breadcrumb>
           <BreadcrumbList>
-            <BreadcrumbItem className="hidden md:block">
-              <div className="flex items-center gap-1">
-                {prevLinks.map((link, index) => (
-                  <div key={index} className="flex items-center gap-2">
+            {prevLinks.map((segment, index) => {
+              const href = `/${locale}/${prevLinks
+                .slice(0, index + 1)
+                .join("/")}`;
+              return (
+                <React.Fragment key={href}>
+                  <BreadcrumbItem className="hidden md:block">
                     <Link
-                      key={index}
                       className="hover:text-foreground transition-colors"
-                      href={`/${locale}/${prevLinks.join("/")}`}
+                      href={href}
                     >
-                      {link}
+                      {segment}
                     </Link>
-                    <BreadcrumbSeparator className="hidden md:block" />
-                  </div>
-                ))}
-              </div>
-            </BreadcrumbItem>
+                  </BreadcrumbItem>
+                  <BreadcrumbSeparator className="hidden md:block" />
+                </React.Fragment>
+              );
+            })}
             <BreadcrumbItem>
-              <BreadcrumbPage>{current}</BreadcrumbPage>
+              <BreadcrumbPage>
+                {Array.isArray(current) ? current[0] : current}
+              </BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>

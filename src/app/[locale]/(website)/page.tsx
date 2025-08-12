@@ -5,6 +5,7 @@ import Menu from "./_components/menu";
 import Service from "./_components/Service";
 import SpecialOffers from "./_components/SpecialOffers";
 // import { db } from "@/lib/prisma";
+// import { db } from "@/lib/prisma";
 // import { faker } from "@faker-js/faker";
 
 export default async function Home() {
@@ -27,6 +28,65 @@ export default async function Home() {
   //     },
   //   },
   // });
+  // await db.product.findMany({
+  //   where: { order: { gt: 0 } },
+  //   select: { id: true, sizes: true, extras: true },
+  // });
+
+  // for (const product of products) {
+  //   await db.product.update({
+  //     where: { id: product.id },
+  //     data: {
+  //       sizes: product.sizes.length === 1
+  //         ? undefined
+  //         : {
+  //             create: [
+  //               { name: "SMALL", price: 10 },
+  //               { name: "MEDIUM", price: 20 },
+  //               { name: "LARGE", price: 30 },
+  //             ],
+  //           },
+  //       extras: product.extras.length === 1
+  //         ? undefined
+  //         : {
+  //             create: [
+  //               { name: "ONION", price: 5 },
+  //               { name: "CHEESE", price: 15 },
+  //               { name: "TOMATO", price: 7 },
+  //               { name: "PEPPER", price: 6 },
+  //             ],
+  //           },
+  //     },
+  //   });
+  // }
+
+//  await db.product.findMany({
+//     where: { order: { gt: 0 } },
+//     select: { id: true },
+//   });
+
+//   for (const product of products) {
+//     await db.product.update({
+//       where: { id: product.id },
+//       data: {
+//         sizes: {
+//           deleteMany: [
+//             { name: "SMALL" },
+//             { name: "MEDIUM" },
+//             { name: "LARGE" },
+//           ],
+//         },
+//         extras: {
+//           deleteMany: [
+//             { name: "ONION" },
+//             { name: "CHEESE" },
+//             { name: "TOMATO" },
+//             { name: "PEPPER" },
+//           ],
+//         },
+//       },
+//     });
+//   }
 
   // const createUser = await db.user.createMany({
   //   data: Array.from({ length: 20 }, () => ({

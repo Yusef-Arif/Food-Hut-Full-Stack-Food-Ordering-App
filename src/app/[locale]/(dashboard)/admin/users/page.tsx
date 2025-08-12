@@ -25,12 +25,12 @@ const page = async ({
   });
   return (
     <div>
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center max-md:flex-col mb-5 w-full">
         <h1 className="text-4xl font-bold mb-3 text-primary flex justify-start items-center gap-1.5">
           <Users />
           {translation.dashboard.nav.allUsers}
         </h1>
-        <div className="flex gap-3 items-center">
+        <div className="flex md:gap-3 items-center max-md:justify-end max-md:w-full">
           <Search />
           <FilterUsers />
         </div>

@@ -28,7 +28,7 @@ const PagenationButtons = ({
     }
   };
   return (
-    <div className="flex justify-between items-center my-3">
+    <div className="flex justify-between items-center my-3 max-md:px-4">
       <span
         onClick={handleNextPage}
         className={`${

@@ -15,9 +15,18 @@ import {
 import { useTransition } from "react";
 import { toast } from "sonner";
 import { deleteCategory } from "@/server/_actions/category";
+import { Translations } from "@/interfaces/translations";
+import { useParams } from "next/navigation";
 
-export function DelteCategory({ categoryId }: { categoryId: string }) {
+export function DeleteCategory({
+  categoryId,
+  translations,
+}: {
+  categoryId: string;
+  translations: Translations;
+}) {
   const [isPending, startTransition] = useTransition();
+  const { locale } = useParams();
   const handleDelete = () => {
     startTransition(async () => {
       const res = await deleteCategory(categoryId);
@@ -36,18 +45,20 @@ export function DelteCategory({ categoryId }: { categoryId: string }) {
           <Trash />
         </Button>
       </AlertDialogTrigger>
-      <AlertDialogContent>
+      <AlertDialogContent className={`${locale === "ar" ? "rtl" : ""}`}>
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+          <AlertDialogTitle>
+            {translations.alerts.deleteCategory.title}
+          </AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete All
-            Products Belong to this Category.
+            {translations.alerts.deleteCategory.description}
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogCancel>{translations.labels.cancel}</AlertDialogCancel>
           <AlertDialogAction onClick={handleDelete}>
-            {isPending && <Loader className="animate-spin" />} Continue
+            {isPending && <Loader className="animate-spin" />}{" "}
+            {translations.labels.ok}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

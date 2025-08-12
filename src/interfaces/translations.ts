@@ -92,6 +92,13 @@ export interface Translations {
     noSizesAvailable: string;
     noExtrasAvailable: string;
     noProducts: string;
+    addToCart: string;
+    removeFromCart: string;
+    emptyCart: string;
+    createSuccess: string;
+    notProvided: string;
+    notExtras: string;
+    notSizes: string;
   };
   labels: {
     name: string;
@@ -123,6 +130,23 @@ export interface Translations {
     chooseSize: string;
     chooseExtra: string;
     viewMore: string;
+    cart: string;
+    checkout: string;
+    editUser: string;
+    role: string;
+    createdAt: string;
+    updatedAt: string;
+    order: string;
+    ok: string;
+    cancel: string;
+    editProduct: string;
+    editCategory: string;
+  };
+  alerts: {
+    deleteCategory: {
+      title: string;
+      description: string;
+    };
   };
   placeholders: {
     name: string;
