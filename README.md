@@ -22,6 +22,9 @@ The app is split into **two main sections**:
 - **✅ Robust Validation** using Zod.
 - **⚡ State Management** with Redux Toolkit.
 - **🎨 Fully Responsive** UI with Tailwind CSS & shadcn/ui.
+- **🔍 Advanced Search**: Quickly find products by name or category.
+- **📑 Pagination**: Smooth navigation through large data sets.
+- **🎯 Filtration**: Filter products by category, price range, and more.
 
 ---
 
@@ -31,6 +34,9 @@ The app is split into **two main sections**:
 
 ### Dashboard
 ![Dashboard](./dashoard.png)
+
+### Search, Filtration & Pagination
+![Search and Filters](./menu.png)
 
 ---
 
