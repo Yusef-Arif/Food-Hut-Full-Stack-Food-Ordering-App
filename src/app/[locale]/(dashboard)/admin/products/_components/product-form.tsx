@@ -130,7 +130,7 @@ const ProductForm = ({
       router.push(`/${locale}/admin/products`);
       setSelectedImage("");
       setCategoryId("");
-      toast.success(translations.messages.createSuccess);
+      toast.success(translations.messages.productCreated);
     }
   }, [state, pending]);
 

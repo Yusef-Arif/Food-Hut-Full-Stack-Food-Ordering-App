@@ -92,10 +92,20 @@ const UserForm = ({
       setErrors({});
     }
 
+    if (
+      state?.status === 200 &&
+      state.message &&
+      !pending &&
+      slug === "profile"
+    ) {
+      toast.success(translations.messages.updateSuccess);
+      setErrors({});
+    }
+
     if (state?.status !== 200 && state.message && !pending) {
       toast.error(translations.messages.updateSuccess);
     }
-  }, [state, translations, pending]);
+  }, [state, pending]);
 
   useEffect(() => {
     setSelectedImage(user?.image as string);
@@ -170,6 +180,8 @@ const UserForm = ({
           {pending && <Loader className="animate-spin" />}
           {slug === "edit" || slug === "profile"
             ? translations.labels.editUser
+            : slug === "create"
+            ? translations.dashboard.nav.createUser
             : translations.authPrompt.goToLogin}
         </Button>
       </div>

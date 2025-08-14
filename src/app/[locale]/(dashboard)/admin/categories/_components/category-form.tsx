@@ -12,7 +12,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Edit, Loader, Plus } from "lucide-react";
-import { useActionState, useEffect } from "react";
+import { useActionState, useEffect, useState } from "react";
 import { EditCategory, AddCategory } from "@/server/_actions/category";
 import { toast } from "sonner";
 import { categoryWithProducts } from "@/lib/types";
@@ -20,12 +20,13 @@ import { Translations } from "@/interfaces/translations";
 
 export function CategoryForm({
   category,
-  translations
+  translations,
 }: {
   category: categoryWithProducts | undefined;
   translations: Translations;
 }) {
   const isEditMode = category !== undefined;
+  const [open, setOpen] = useState(false);
   const initialState = {
     status: 0,
     error: "",
@@ -38,16 +39,23 @@ export function CategoryForm({
   );
 
   useEffect(() => {
-    if (state.status && state.status === 200) {
-      toast.success("created");
+    if (state.status && state.status === 200 && isEditMode) {
+      toast.success(translations.messages.updateSuccess);
+      setOpen(false);
+    }
+
+    if (state.status && state.status === 200 && !isEditMode) {
+      toast.success(translations.messages.categoryCreated);
+      setOpen(false);
     }
 
     if (state.status && state.status !== 200) {
       toast.error(state.message);
     }
   }, [state]);
+  
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         {isEditMode ? (
           <Button variant={"ghost"} className="text-blue-500">
@@ -64,7 +72,10 @@ export function CategoryForm({
         <form action={action}>
           <DialogHeader>
             <DialogTitle className="heading">
-              <Plus /> {isEditMode ? translations.labels.editCategory : translations.dashboard.nav.createCategory}
+              <Plus />{" "}
+              {isEditMode
+                ? translations.labels.editCategory
+                : translations.dashboard.nav.createCategory}
             </DialogTitle>
           </DialogHeader>
           <div className=" my-4">
@@ -89,7 +100,8 @@ export function CategoryForm({
               <Button variant="outline">{translations.labels.cancel}</Button>
             </DialogClose>
             <Button type="submit">
-              {pending && <Loader className="animate-spin" />} {translations.labels.ok}
+              {pending && <Loader className="animate-spin" />}{" "}
+              {translations.labels.ok}
             </Button>
           </DialogFooter>
         </form>

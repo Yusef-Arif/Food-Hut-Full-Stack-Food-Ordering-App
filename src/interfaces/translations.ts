@@ -99,6 +99,7 @@ export interface Translations {
     notProvided: string;
     notExtras: string;
     notSizes: string;
+    categoryCreated: string;
   };
   labels: {
     name: string;

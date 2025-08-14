@@ -4,7 +4,7 @@ const getImageURL = async (image: File, path: string) => {
   formData.append("pathName", `${path}_images`);
 
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}api/upload`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/upload`, {
       method: "POST",
       body: formData,
     });

@@ -73,7 +73,7 @@ export const addProduct = async (
 
     return {
       status: 200,
-      message: translation.messages.registerSuccess,
+      message: translation.messages.productCreated,
     };
   } catch (error) {
     console.error(error);

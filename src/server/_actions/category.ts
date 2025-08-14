@@ -158,7 +158,7 @@ export const deleteCategory = async (categoryId: string) => {
 
     return {
       status: 200,
-      message: translation.messages.registerSuccess,
+      message: translation.messages.deleteSuccess,
     };
   } catch (error) {
     console.error(error);

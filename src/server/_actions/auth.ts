@@ -75,7 +75,7 @@ export type State =
   | { message: string; status: number; error?: undefined; user?: undefined }
   | {
       status: number;
-      user: { id: string; email: string; name: string };
+      user: { id: string; email: string; name: string; password: string };
       message: string;
       error?: undefined;
     };
@@ -123,6 +123,7 @@ export const SignUp = async (prevState: State, formData: FormData) => {
         id: createUser.id,
         email: createUser.email,
         name: createUser.name,
+        password: validation.data.password,
       },
       message: translation.messages.registerSuccess,
     };

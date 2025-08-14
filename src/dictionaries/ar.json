@@ -98,7 +98,8 @@
     "createSuccess": "تم إنشاء المستخدم بنجاح",
     "notProvided": "لم يتم توفير",
     "notExtras": "لا توجد إضافات",
-    "notSizes": "لا توجد مقاسات"
+    "notSizes": "لا توجد مقاسات",
+    "categoryCreated": "تم إنشاء الفئة بنجاح."
   },
   "labels": {
     "name": "الاسم",
@@ -146,7 +147,7 @@
   "alerts": {
     "deleteCategory": {
       "title": "تأكيد الحذف",
-      "description": "هل أنت متأكد أنك تريد حذف هذه الفئة؟"
+      "description": "هل أنت متأكد أنك تريد حذف هذه الفئة؟ هذا سيؤدي إلى إزالة جميع المنتجات المرتبطة بها."
     }
   },
   "placeholders": {

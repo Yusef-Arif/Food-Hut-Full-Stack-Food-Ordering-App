@@ -105,7 +105,8 @@
     "createSuccess": "User has been created successfully",
     "notProvided": "Not provided",
     "notExtras": "No extras available",
-    "notSizes": "No sizes available"
+    "notSizes": "No sizes available",
+    "categoryCreated": "Category has been created successfully."
   },
   "labels": {
     "name": "Name",
@@ -153,7 +154,7 @@
   "alerts": {
     "deleteCategory": {
       "title": "Confirm Deletion",
-      "description": "Are you sure you want to delete this category?"
+      "description": "Are you sure you want to delete this category? this will remove all associated products."
     }
   },
   "placeholders": {

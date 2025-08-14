@@ -12,7 +12,7 @@ import {
 import Link from "../Link";
 import { Translations } from "@/interfaces/translations";
 import { Session } from "next-auth";
-import { LayoutDashboard, LogOut, User } from "lucide-react";
+import { LayoutDashboard, LogOut, User, User2 } from "lucide-react";
 import { UserRoles } from "@prisma/client";
 import { useParams } from "next/navigation";
 import { signOut } from "next-auth/react";
@@ -36,7 +36,9 @@ export function ProfileMenu({
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         {!session?.user.image ? (
-          <Button variant="outline">{translation.profileMenu.open}</Button>
+          <Button variant="outline" className="rounded-full">
+            <User2 />
+          </Button>
         ) : (
           <Image
             src={session?.user.image}

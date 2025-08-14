@@ -8,6 +8,7 @@ import { IFormField } from "@/interfaces/fields";
 import { Translations } from "@/interfaces/translations";
 import { SignUp, State } from "@/server/_actions/auth";
 import { Loader } from "lucide-react";
+import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useActionState, useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -16,7 +17,7 @@ const initialState: State = {
   message: "",
   error: undefined,
   status: 0,
-  user: { id: "", email: "", name: "" },
+  user: { id: "", email: "", name: "", password: "" },
 };
 
 function Form({
@@ -49,7 +50,13 @@ function Form({
 
     if (state.status === 201) {
       toast.success(state.message);
-      router.replace(`/${locale}`);
+      signIn("credentials", {
+        email: state.user.email,
+        password: state.user.password,
+        redirect: false,
+      }).then(() => {
+        router.replace(`/${locale}`);
+      });
     }
   }, [state, locale, router]);
 
