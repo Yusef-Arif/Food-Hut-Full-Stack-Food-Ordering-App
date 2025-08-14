@@ -1,7 +1,7 @@
 # 🍔 Food Hut – Full Stack Food Ordering App
 
 ![Hero Section](./website.png)
-![Dashboard](./dashboard.png)
+![Dashboard](./dashoard.png)
 
 ## 📌 Overview
 **Food Hut** is a modern, full-stack food ordering application built with a powerful tech stack:  
@@ -30,7 +30,7 @@ The app is split into **two main sections**:
 ![Hero Section](./website.png)
 
 ### Dashboard
-![Dashboard](./dashboard.png)
+![Dashboard](./dashoard.png)
 
 ---
 
