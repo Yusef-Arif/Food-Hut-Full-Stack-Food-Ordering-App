@@ -5,7 +5,7 @@
 
 ## 📌 Overview
 **Food Hut** is a modern, full-stack food ordering application built with a powerful tech stack:  
-**Next.js, TypeScript, Tailwind CSS, shadcn/ui, Redux Toolkit, Zod, and i18n**.  
+**Next.js, TypeScript, Tailwind CSS, shadcn/ui, Redux Toolkit, Zod, Prisma, and i18n**.  
 The app is split into **two main sections**:  
 
 - **Dashboard (Admin Panel)**: Manage products, categories, and users with full CRUD operations.
@@ -47,6 +47,7 @@ The app is split into **two main sections**:
 - **Validation**: [Zod](https://zod.dev/)
 - **Internationalization**: [next-intl](https://next-intl-docs.vercel.app/) / i18n
 - **Data Handling**: Server Actions & useActionState
+- **Database ORM**: Prisma
 
 ---
 
