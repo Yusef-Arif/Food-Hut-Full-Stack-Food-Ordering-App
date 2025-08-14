@@ -46,6 +46,7 @@ export const AddCategory = async (prevState: unknown, formData: FormData) => {
       },
     });
 
+    revalidatePath(`/${locale}`);
     revalidatePath(`/${locale}/admin/products`);
     revalidatePath(`/${locale}/admin`);
     revalidatePath(`/${locale}/admin/categories`);
@@ -109,6 +110,7 @@ export const EditCategory = async (
       },
     });
 
+    revalidatePath(`/${locale}`);
     revalidatePath(`/${locale}/admin/products`);
     revalidatePath(`/${locale}/admin`);
     revalidatePath(`/${locale}/admin/categories`);
@@ -152,6 +154,7 @@ export const deleteCategory = async (categoryId: string) => {
       },
     });
 
+    revalidatePath(`/${locale}`);
     revalidatePath(`/${locale}/admin/products`);
     revalidatePath(`/${locale}/admin`);
     revalidatePath(`/${locale}/admin/categories`);

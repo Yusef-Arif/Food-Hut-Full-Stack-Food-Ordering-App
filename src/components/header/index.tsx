@@ -37,7 +37,7 @@ const Header = async () => {
             </div>
 
             <Link
-              href={`${locale}/cart`}
+              href={`/${locale}/cart`}
               className="relative flex items-center justify-center"
             >
               <ShoppingCart

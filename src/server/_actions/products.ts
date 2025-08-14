@@ -67,6 +67,7 @@ export const addProduct = async (
       },
     });
 
+    revalidatePath(`/${locale}`);
     revalidatePath(`/${locale}/admin/products`);
     revalidatePath(`/${locale}/admin`);
     revalidatePath(`/${locale}/admin/categories`);
@@ -160,6 +161,7 @@ export const editProduct = async (
       },
     });
 
+    revalidatePath(`/${locale}`);
     revalidatePath(`/${locale}/admin/products`);
     revalidatePath(`/${locale}/admin`);
     revalidatePath(`/${locale}/admin/categories`);

@@ -59,6 +59,7 @@ export const createUser = async (prevState: unknown, formData: FormData) => {
       },
     });
 
+    revalidatePath(`/${locale}`);
     revalidatePath(`/${locale}/profile`);
     revalidatePath(`/${locale}/admin`);
     revalidatePath(`/${locale}/admin/users`);
@@ -155,6 +156,7 @@ export const deleteUser = async (id: string) => {
       },
     });
 
+    revalidatePath(`/${locale}`);
     revalidatePath(`/${locale}/admin/users`);
 
     return {
